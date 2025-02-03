@@ -1,0 +1,96 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Inter;
+}
+
+.navbar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.main{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.logo {
+    padding-left: 120px;
+}
+
+.nav ul{
+    margin-left: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.nav ul li{
+    padding: 0 20px;
+    list-style: none;
+}
+
+.nav ul li a{
+    text-decoration: none;
+    color: black;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.nav ul li a:hover{
+    color: #CE5959;
+    text-decoration: underline;
+}
+
+.action{
+    margin-right: 100px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.orderNowbtn{
+    color: white;
+    padding: 15px 20px;
+    background-color: #CE5959;
+    border: 0;
+    border-radius: 30px;
+}
+
+.orderNowbtn:hover{
+    background-color: #ff5858;
+    cursor: pointer;
+}
+
+.actions{
+    margin: 0 20px;
+}
+
+/* diri ra i edit ang block or pwede rasad i (border bottom: 5px solide #A54646 )nalang sa .navbar na class */
+.block{
+    height: 5px;
+    background-color: #A54646;
+}
+
+.imgBtns:hover{
+    cursor: pointer;
+}
+
+.breadcrumb{
+    margin-top: 10px;
+    margin-left: 40px;
+}
