@@ -14,23 +14,23 @@
             </div>
             <div class="nav">
                 <ul>
-                    <li><a href="">Home</a></li>
-                    <li><a href="">Menu</a></li>
+                    <li><a href="index.php">Home</a></li>
+                    <li><a href="menuPage.php">Menu</a></li>
                     <li><a href="">Contact Us</a></li>
                     <li><a href="">About Us</a></li>
                 </ul>
             </div>
             <div class="action">
-                <button class="orderNowbtn actions">ORDER NOW</button>
-                <img class="actions imgBtns" src="../Images/Icon/username_icon.png" alt="profile">
-                <img class="actions imgBtns" src="../Images/Icon/cart_icon.png" alt="cart">
+                <button class="shopNowBtn actions" onclick="location.href='createAccount.php'">SHOP NOW</button>
+                <a href=""><img class="actions imgBtns" src="../Images/Icon/username_icon.png" alt="profile"></a>
+                <a href=""><img class="actions imgBtns" src="../Images/Icon/cart_icon.png" alt="cart"></a>
             </div>
         </div>
         <div class="block">
             <p></p>
         </div>
         <div class="breadcrumb">
-            <img src="../Images/Icon/home_icon.png" alt="home">
+                <img src="../Images/Icon/home_icon.png" alt="home">
         </div>
     </section>
-    
+</body>

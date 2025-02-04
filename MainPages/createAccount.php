@@ -19,7 +19,7 @@
             <h1 class="header">Create an Account</h1>
         </div>
         <div class="createAcc-form-container">
-            <h2>Already have an account? <a href="index.php">Sign in</a></h2>
+            <h2>Already have an account? <a href="login.php">Sign in</a></h2>
             <form class="forms" action="">
                 <label for="firstName">First Name</label>
                 <input type="text" name="firstName" id="firstName" required>

@@ -1,0 +1,156 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Inter;
+}
+
+.main{
+    width: 100%;
+}
+
+.nav{
+    margin-top: 20px;
+}
+
+.block{
+    visibility: hidden;
+}
+
+.main-container{
+    margin-top: 95px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.first-container{
+    width: 100%;
+    padding: 10px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: #A54646;
+}
+
+.p-container{
+    width: 500px;
+    margin-right: 50px;
+}
+
+.car-container{
+    margin-right: 40px;
+    width:190px;
+    max-width: 190px;
+}
+
+.carousel-inner{
+    border-radius: 10px;
+}
+
+.p-container h1{
+    text-align: center;
+    font-weight: 700;
+    font-size: 26px;
+    color: white;
+}
+
+.intro-container{
+    margin: 30px 0;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.intro-container h1{
+    color: #CE5959;
+    font-size: 26px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.intro-container h3{
+    color: black;
+    font-size: 14px;
+    font-weight: 450;
+    text-align: center;
+}
+
+.third-container{
+    width: 100%;
+    width: 1100px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.third-container h1{
+    align-self: flex-start;
+    font-size: 24px;
+    color: #CE5959;
+    font-weight: 600;
+}
+
+.best-seller-container{
+    margin-top: 40px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.bs-containers{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 0;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 1px 1px 5px 2px gray ;
+}
+
+.bs-containers img{
+    width: 200px;
+    height: 200px;
+}
+
+.bs-containers h2{
+    margin-top: 10px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.orderNowBtn{
+    padding: 5px 10px;
+    background-color: #CE5959;
+    border: 0;
+    border-radius: 50px;
+    font-size: 12px;
+    font-weight: 700;
+    color: white;
+}
+
+.orderNowBtn:hover{
+    background-color: #ff5858;
+    cursor: pointer;
+}
+
+.carousel-item img{
+    width: 150px;
+    height: 200px;
+}
+
+.breadcrumb{
+    visibility: hidden;
+}
+
+.shopNowBtn{
+    padding: 0px;
+}

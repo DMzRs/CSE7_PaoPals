@@ -24,6 +24,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px 0;
+    background-color: white;
 }
 
 .logo {
@@ -63,7 +64,7 @@
     justify-content: space-evenly;
 }
 
-.orderNowbtn{
+.shopNowBtn{
     color: white;
     padding: 15px 20px;
     background-color: #CE5959;
@@ -71,7 +72,7 @@
     border-radius: 30px;
 }
 
-.orderNowbtn:hover{
+.shopNowBtn:hover{
     background-color: #ff5858;
     cursor: pointer;
 }
@@ -92,5 +93,5 @@
 
 .breadcrumb{
     margin-top: 10px;
-    margin-left: 40px;
+    margin-left: 100px;
 }
