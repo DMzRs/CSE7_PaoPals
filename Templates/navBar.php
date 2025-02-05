@@ -23,7 +23,7 @@
             <div class="action">
                 <button class="shopNowBtn actions" onclick="location.href='createAccount.php'">SHOP NOW</button>
                 <a href=""><img class="actions imgBtns" src="../Images/Icon/username_icon.png" alt="profile"></a>
-                <a href=""><img class="actions imgBtns" src="../Images/Icon/cart_icon.png" alt="cart"></a>
+                <a href="cartPage.php"><img class="actions imgBtns" src="../Images/Icon/cart_icon.png" alt="cart"></a>
             </div>
         </div>
         <div class="block">

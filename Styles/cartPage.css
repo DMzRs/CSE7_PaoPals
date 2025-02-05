@@ -1,0 +1,261 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Inter;
+}
+
+.mainContainer{
+    margin: 0 auto;
+    margin-top: 180px;
+    width: 100%;
+    width: 1400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.header{
+    align-self: flex-start;
+
+}
+
+.header h1{
+    color: #CE5959;
+    font-size: 30px;
+}
+
+.header img{
+    width: 40px;
+    height: 35px;
+}
+
+.table-header{
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    width: 100%;
+    width: 1300px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.table-header h2{
+    color: #CE5959;
+    padding: 10px 10px;
+    font-size: 20px;
+}
+
+.price{
+    margin-left: 390px;
+}
+
+.quantity{
+    margin-left: 100px;
+}
+
+.totalPrice{
+    margin-right: 150px;
+}
+
+.order-container{
+    width: 100%;
+    width: 1300px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.order-container h2{
+    color: black;
+    padding: 10px 0;
+    font-size: 18px;
+    font-weight: 450;
+}
+
+.orderName{
+    width: 190px;
+}
+
+.orderImg img{
+    width: 80px;
+    height: 80px;
+}
+
+.orderImg{
+    margin-left: 120px;
+}
+
+.orderPrice{
+    margin-right: 40px;
+}
+
+.orderQuantity{
+    border: 1px solid black;
+    width: 100%;
+    width: 100px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-left: 80px;
+}
+
+.orderQuantity h2{
+    padding: 5px;
+}
+.orderQuantity button{
+    border: 0;
+    background-color: white;
+    align-items: center;
+}
+
+.orderQuantity button:hover{
+    cursor: pointer;
+}
+
+.reduceQuantity{
+    margin-bottom: 7px; 
+}
+
+.increaseQuantity{
+    margin-top: 2px;
+}
+
+.orderTotalPrice{
+    margin-left: 40px;
+}
+
+.orderDelete{
+    margin-right: 70px;
+}
+
+.total-cost-container{
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    width: 100%;
+    width: 1300px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.total-cost-container h2{
+    color: black;
+    padding: 10px 0;
+    font-size: 18px;
+    font-weight: 450;
+}
+
+.totalCostTitle{
+    margin-right: 100px;
+}
+
+.totalCost{
+    margin-right: 170px;
+}
+
+.buttons{
+    width: 100%;
+    width: 1250px;
+    margin: 0 auto;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.buttons button{
+    padding: 10px 10px;
+    background-color: #CE5959;
+    border: 0;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    color: white;
+    align-items: center;
+}
+
+.continueOrder{
+    background-image: url(../Images/Icon/continueOrder_icon.png);
+    background-repeat: no-repeat;
+    background-position: 10px;
+}
+
+.checkOut{
+    background-image: url(../Images/Icon/checkOut_icon.png);
+    background-repeat: no-repeat;
+    background-position: 102px;
+}
+
+.continueOrder h2{
+    padding-left: 25px;
+}
+
+.checkOut h2{
+    padding-right: 25px;
+}
+
+.buttons button:hover{
+    background-color: #ff5858;
+    cursor: pointer;
+}
+
+.titleEmpty{
+    width: 1000px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.titleEmpty h1{
+    color: #CE5959;
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+.titleEmpty h3{
+    width: 650px;
+    font-size: 18px;
+    font-weight: 450;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.orderButton-container{
+    width: 700px;
+    height: 300px;
+    background-color: #F1B9B2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
+    margin-top: 20px;
+}
+
+.orderButton-container button{
+    padding: 15px 40px;
+    background-color: #CE5959;
+    border: 0;
+    border-radius: 20px;
+    font-size: 18px;
+    font-weight: 600;
+    color: white;
+    align-items: center;
+}
+
+.orderButton-container button:hover{
+    background-color: #ff5858;
+    cursor: pointer;
+}
