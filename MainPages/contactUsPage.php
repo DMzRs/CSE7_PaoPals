@@ -36,17 +36,17 @@
             </div>
             <div class="contactDetails-container">
                 <div class="hotline">
-                    <img src="" alt=""><h2>Hotline</h2>
+                <h2><img src="../Images/Icon/hotline_icon.png" alt="hotline"> Hotline</h2>
 
                     <h3>#8-44-44</h3>
                 </div>
                 <div class="email">
-                    <img src="" alt=""><h2>Email</h2>
+                <h2><img src="../Images/Icon/email_icon.png" alt="email"> Email</h2>
 
                     <h3>feedback@papls.com</h3>
                 </div>
                 <div class="address">
-                    <img src="" alt=""><h2>Address</h2>
+                <h2><img src="../Images/Icon/address_icon.png" alt="address"> Address</h2>
                     <h3>UM Matina, Davao City</h3>
                 </div>
             </div>
