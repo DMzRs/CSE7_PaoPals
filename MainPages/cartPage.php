@@ -15,7 +15,7 @@
     <?php include '../Templates/navBar.php'; ?>
 
     <section class="mainContainer">
-        <!-- Pang if else ni kung naay sulod ang Order Cart
+        <!-- Pang if else ni kung naay sulod ang Order Cart -->
         <div class="header">
             <h1>Your Order Cart <img src="../Images/Icon/orderCart_icon.png" alt="order-icon"></h1>
         </div>
@@ -66,16 +66,16 @@
         <div class="buttons">
             <button class="continueOrder"><h2>Continue Order</h2></button>
             <button class="checkOut"><h2>Checkout</h2></button>
-        </div> -->
+        </div>
 
         <!-- Kani kung EMPTY -->
-        <div class="titleEmpty">
+        <!-- <div class="titleEmpty">
             <h1>Your Cart is Empty</h1>
             <h3>Your cart is currently empty! Start adding your favorite siopao and treats from our menu to enjoy a delicious meal today!</h3>
         </div>
         <div class="orderButton-container">
             <button name="orderNowEmptyCart" onclick="location.href='menuPage.php'">Order Now</button>
-        </div>
+        </div> -->
     </section>
 </body>
 </html>
