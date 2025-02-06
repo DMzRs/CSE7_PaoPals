@@ -19,8 +19,8 @@
         </div>
         <div class="first-container">
             <div class="tab-container">
-                <h1>Dashboard</h1>
-                <a class="menu" href="mainDashboard.php">Menu</a>
+                <a class="dashboard" href="mainDashboard.php">Dashboard</a>
+                <a class="products" href="productPage.php">Products</a>
                 <a class="inventory" href="inventoryPage.php">Inventory</a>
                 <a class="feedbacks" href="feedbackPage.php">Feedbacks</a>
             </div>

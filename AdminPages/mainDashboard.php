@@ -19,46 +19,81 @@
         </div>
         <div class="first-container">
             <div class="tab-container">
-                <h1>Dashboard</h1>
-                <a class="menu" href="mainDashboard.php">Menu</a>
+                <a class="dashboard" href="mainDashboard.php">Dashboard</a>
+                <a class="products" href="productPage.php">Products</a>
                 <a class="inventory" href="inventoryPage.php">Inventory</a>
                 <a class="feedbacks" href="feedbackPage.php">Feedbacks</a>
             </div>
-            <div class="menu-container">
-                <h1 class="menuHeader">Menu</h1>
-                <h3 class="categoryHeader">Category</h3>
-                <div class="categories">
-                    <div class="siopao">
-                        <img src="../Images/Siopao/sample_1.png" alt="siopao">
+            <div class="dashBoard-container">
+                <h1 class="dashboardHeader">Dashboard</h1>
+                <div class="main-content">
+                    <div class="totalIncome">
                         <h2>Siopao</h2>
+                        <h1>₱99,999,99</h1>
                     </div>
-                    <div class="drinks">
-                        <img src="../Images/Drinks/drink1.png" alt="drink">
-                        <h2>Drinks</h2>
+                    <div class="orderCount">
+                        <h2>Order Count</h2>
+                        <h1>33,440</h1>
                     </div>
-                    <div class="desserts">
-                        <img src="../Images/Desserts/dessert1.png" alt="dessert">
-                        <h2>Desserts</h2>
+                    <div class="customerCount">
+                        <h2>Total Customers</h2>
+                        <h1>33,440</h1>
                     </div>
                 </div>
-                <!-- or pwede pud i if else nimo ang category so per click ana ang format sugod 
-                 product-container class -->
-                <div class="product-container">
-                    <h1>Siopao</h1>
-                    <div class="items-container">
-                        <div class="item-container">
-                            <!-- kaning class na container mao ni ang pang back-end pag mag add ug element sa php
-                             dapat same format automatic nana mag 4 items per row -->
-                            <div class="container">
-                            <img src="../Images/Siopao/sample_1.png" alt="siopao">
-                            <h2>Siopao</h2>
-                            <div>
-                                <h2>₱90.00</h2>
-                                <h2>Stocks: 99</h2>
-                            </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="mostPopular-container">
+                    <h1>Most Popular Items</h1>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Menu Items</th>
+                                <th>Orders</th>
+                            </tr>
+                        </thead>
+                        <!-- ang t body lang ang butangig logic sa pag display table same format -->
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Pork Asado Siopao</td>
+                                <td>120</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Bola-bola Siopao</td>
+                                <td>95</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Chicken Asado Siopao</td>
+                                <td>87</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Beef Asado Siopao</td>
+                                <td>76</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>Leche Flan</td>
+                                <td>66</td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>Siopao</td>
+                                <td>6</td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td>Siopao</td>
+                                <td>6</td>
+                            </tr>
+                            <tr>
+                                <td>8</td>
+                                <td>Siopao</td>
+                                <td>6</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

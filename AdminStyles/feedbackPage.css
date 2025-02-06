@@ -43,17 +43,6 @@
     align-items: center;
 }
 
-.tab-container h1{
-    text-decoration: none;
-    width: 170px;
-    padding: 10px 0;
-    padding-left: 30px;
-    color: black;
-    font-size: 22px;
-    font-weight: 800;
-    border-bottom: 1px solid black;
-}
-
 .tab-container a{
     text-decoration: none;
     width: 170px;
