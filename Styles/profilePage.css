@@ -1,0 +1,138 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Inter;
+}
+
+.main-container{
+    margin: 0 auto;
+    width: 1700px;
+    margin-top: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-container{
+    align-self: flex-start;
+    margin-left: 250px;
+}
+
+.header-container h1{
+    color: #CE5959;
+    font-size: 30px;
+}
+
+.header-container h2{
+    color: #CE5959;
+    margin-top: 5px;
+    font-size: 18px;
+    font-weight: 500;
+    margin-left: 30px;
+}
+
+.first-container{
+    width: 100%;
+    width: 1700px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.tab-container{
+    align-self: flex-start;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.tab-container a{
+    text-decoration: none;
+    width: 170px;
+    padding: 10px 0;
+    padding-left: 30px;
+    color: black;
+    font-size: 22px;
+    font-weight: 600;
+    border-bottom: 1px solid black;
+}
+
+.profileEdit{
+    background-color: #F1B9B2;
+}
+
+.prof-info-container{
+    width: 1000px;
+    margin-left: 50px;
+    padding: 40px 20px;
+    border: 1px solid lightgray;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.prof-info-container h3{
+    align-self: flex-start;
+    color:#CE5959;
+}
+
+.prof-info-container form{
+    margin-top: 20px;
+    width: 900px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.prof-info-container div{
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 40%;
+}
+
+.prof-info-container input{
+    width: 400px;
+    border: 0;
+    border-bottom: 1px solid black;
+    padding-left: 10px;
+}
+
+.prof-info-container input:focus{
+    outline: 0;
+    border: 0;
+    border-bottom: 1px solid black;
+}
+
+.prof-info-container input, .prof-info-container label{
+    margin: 10px 0;
+    color: #CE5959;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.saveBtn button{
+    display: block;
+    width: 200px;
+    margin-top: 20px;
+    align-self: center;
+    padding: 5px 0;
+    border-radius: 20px;
+    border: 0;
+    background-color: #CE5959;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.saveBtn button:hover{
+    background-color: #ff5858;
+    cursor: pointer;
+}
