@@ -23,6 +23,8 @@
             </div>
             <div class="history-container">
                 <h3>Your Past Orders</h3>
+                        <!-- if walay orders pa ang customer kay ang h2 lang ang mu show up dapat -->
+                        <!-- <h2>You do not have any saved orders.</h2> -->
                         <table>
                         <thead>
                         <tr>

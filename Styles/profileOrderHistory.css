@@ -83,6 +83,12 @@
     color: #CE5959;
 }
 
+.history-container h2{
+    margin: 50px 0;
+    color: #CE5959;
+    font-size: 24px;
+    font-weight: 500;
+}
 .history-container table{
     margin-top: 20px;
     width: 800px;
