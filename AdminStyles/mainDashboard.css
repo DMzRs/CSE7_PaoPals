@@ -126,10 +126,13 @@
     width: 100px;
     height: 100px;
     margin-bottom: 10px;
+    border-radius: 10px;
+    border: 0;
 }
 
 .categories h2{
     font-weight: 500;
+    font-size: 20px;
     color: #CE5959;
 }
 
