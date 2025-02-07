@@ -84,16 +84,17 @@
     padding-left: 40px;
 }
 
-.login-form-container #username{
-    background-image: url(../Images/Icon/username_icon.png);
+.login-form-container #email{
+    background-image: url(../Images/Icon/email_icon.png);
+    background-size: 24px 24px;
     background-repeat: no-repeat;
-    background-position: 10px;
+    background-position: 7px;
 }
 
 .login-form-container #password{
     background-image: url(../Images/Icon/password_icon.png);
     background-repeat: no-repeat;
-    background-position: 10px;
+    background-position: 11px;
 }
 
 .btnContainer{
