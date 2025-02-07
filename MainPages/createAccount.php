@@ -13,7 +13,9 @@
     <title>Create Account</title>
 </head>
 <body>
-    <?php include('../Templates/navBar.php'); ?>
+    <section class="logo">  
+        <img src="../Images/Logo/PaoPals_BigLogo.png" alt="logo">
+    </section>
     <section class="main-container">
         <div>
             <h1 class="header">Create an Account</h1>

@@ -15,7 +15,7 @@
 
     <section class="main-container">
         <div class="header-container">
-            <h1>James Oliver Mendoza</h1>
+            <h1>Hello, James Oliver Mendoza</h1>
         </div>
         <div class="first-container">
             <div class="tab-container">

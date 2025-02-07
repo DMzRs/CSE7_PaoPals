@@ -5,11 +5,23 @@
 }
 
 
+.logo{
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.logo img{
+    width: 220px;
+    height: 200px;
+}
+
 .main-container{
     display: flex;
     flex-direction: column;
     margin: 0 auto;
-    margin-top: 200px;
+    margin-top: 50px;
     width: 100%;
     width: 1000px;
     align-items: center;
@@ -84,9 +96,36 @@
     background-position: 10px;
 }
 
+.btnContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 410px;
+    margin-left: 40px;
+}
+
+.checkboxContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    margin-bottom: 50px;
+}
+
+.checkboxContainer label{
+    margin: 0;
+    width: 200px;
+    text-align: justify;
+    white-space: nowrap;
+    font-size: 12px;
+    margin-left: 5px;
+    margin-top: 1px;
+}
+
 .signIn{
     margin: 20px 0;
-    margin-left: 320px;
     padding: 8px 30px;
     font-size: 18px;
     font-weight: 500;

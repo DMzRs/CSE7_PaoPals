@@ -13,7 +13,9 @@
     <title>Login Page</title>
 </head>
 <body>
-    <?php include('../Templates/navBar.php'); ?>
+    <section class="logo">
+        <img src="../Images/Logo/PaoPals_BigLogo.png" alt="logo">
+    </section>
     <section class="main-container">
         <div class="intro-container">
             <h1>Sign In</h1>
@@ -25,7 +27,15 @@
                 <input type="text" name="username" id="username" required autocomplete="off">
                 <label for="password">Password</label>
                 <input type="password" name="password" id="password" required>
-                <button name="signIn" class="signIn">Sign In</button>
+                <div class="btnContainer">
+                    <div class="checkboxContainer">
+                    <input type="checkbox" id="showPassword" name="showPassword">
+                    <label for="showPassword">Show Password</label>
+                    </div>
+                    <div>
+                    <button name="signIn" class="signIn">Sign In</button>
+                    </div>
+                </div>
             </form>
         </div>
         <div class="create-acc-container">

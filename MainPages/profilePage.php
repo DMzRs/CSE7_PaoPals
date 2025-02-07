@@ -25,31 +25,35 @@
                 <h3>Your information</h3>
                 <form action="">
                     <div>
-                    <label for="firstName">First Name</label>
-                    <input type="text" id="firstName" name="firstName" value="Lean" required>
+                        <label for="firstName">First Name</label>
+                        <input type="text" id="firstName" name="firstName" value="Lean" required>
                     </div>
                     <div>
-                    <label for="lastName">Last Name</label>
-                    <input type="text" id="lastName" name="lastName" value="Murillo" required>
+                        <label for="lastName">Last Name</label>
+                        <input type="text" id="lastName" name="lastName" value="Murillo" required>
                     </div>
                     <div>
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" value="murillolean12@gmail.com" required>
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" value="murillolean12@gmail.com" required>
                     </div>
                     <div>
-                    <label for="contactNumber">Contact Number</label>
-                    <input type="text" inputmode="numeric" id="contactNumber" name="contactNumber" value="09671234340" required>
+                        <label for="contactNumber">Contact Number</label>
+                        <input type="text" inputmode="numeric" id="contactNumber" name="contactNumber" value="09671234340" required>
+                    </div>
+                    <div class="full-width">
+                        <label for="address">Address</label>
+                        <input type="text" id="address" name="address" value="UM Matina Davao" required>
                     </div>
                     <div>
-                    <label for="currentPassword">Current Password</label>
-                    <input type="password" id="currentPassword" name="currentPassword" required>
+                        <label for="currentPassword">Current Password</label>
+                        <input type="password" id="currentPassword" name="currentPassword" required>
                     </div>
                     <div>
-                    <label for="newPassword">New Password</label>
-                    <input type="password" id="newPassword" name="newPassword" required>
+                        <label for="newPassword">New Password</label>
+                        <input type="password" id="newPassword" name="newPassword" required>
                     </div>
                     <div class="saveBtn">
-                    <button name="save">Save</button>
+                        <button name="save">Save</button>
                     </div>
                 </form>
             </div>

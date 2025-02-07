@@ -21,7 +21,7 @@
                 <input class="inputs" type="text" id="name" name="name" placeholder="Your Name" required>
                 <input class="inputs" type="email" id="email" name="email" placeholder="Your Email" required>
                 <input class="inputs" type="text" id="subject" name="subject" placeholder="Subject" required>
-                <textarea class="inputs" rows="20" cols="50" id="feedback" name="feedback" placeholder="Enter your feedback" required></textarea>
+                <textarea class="inputs" rows="20" cols="50" id="feedback" name="feedback" placeholder="Enter your feedback" required style="resize: none;"></textarea>
                 <button class="submitBtn">Submit</button>
             </form>
             </div>
