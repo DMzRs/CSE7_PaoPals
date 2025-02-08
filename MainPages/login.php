@@ -1,6 +1,9 @@
 <?php
-
+session_start();
+include_once '../includes/dbhc.inc.php';
+include_once '../includes/login.inc.php';
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,13 +19,20 @@
     <?php include('../Templates/navBar.php'); ?>
     <section class="main-container">
         <div class="intro-container">
+        <?php if (!empty($errors)): ?>
+            <div class="error-alert">
+                <?php foreach ($errors as $error): ?>
+                    <p><?= htmlspecialchars($error) ?></p>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
             <h1>Sign In</h1>
             <h3>Welcome to Paopals! Sign in to order delicious siopao, manage your account, and enjoy seamless service!</h3>
         </div>
         <div class="login-form-container">
-            <form action="">
-                <label for="username">Username</label>
-                <input type="text" name="username" id="username" required autocomplete="off">
+            <form method="POST">
+            <label>Email</label>
+            <input type="email" name="username" id="username" required>
                 <label for="password">Password</label>
                 <input type="password" name="password" id="password" required>
                 <button name="signIn" class="signIn">Sign In</button>
