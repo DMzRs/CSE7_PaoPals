@@ -60,6 +60,10 @@ include_once '../includes/profilePage.inc.php';
                         <label for="contactNumber">Contact Number</label>
                         <input type="text" inputmode="numeric" id="contactNumber" name="contactNumber" value="<?= htmlspecialchars($customer['customerContactNumber'] ?? ''); ?>" required>
                     </div>
+                    <div class="full-width">
+                        <label for="address">Address</label>
+                        <input type="text" id="address" name="address" value="<?= htmlspecialchars($customer['customerAddress'] ?? ''); ?>" required>
+                    </div>
                     <div>
                         <label for="currentPassword">Current Password</label>
                         <input type="password" id="currentPassword" name="currentPassword" >

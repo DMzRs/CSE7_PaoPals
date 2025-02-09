@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// Check if the user is logged in and is a customer
+// Redirect unauthorized users
 if (!isset($_SESSION['userRole']) || $_SESSION['userRole'] !== 'customer') {
     header('Location: ../MainPages/login.php');
     exit;
@@ -10,7 +10,7 @@ if (!isset($_SESSION['userRole']) || $_SESSION['userRole'] !== 'customer') {
 // Database connection
 include_once '../includes/dbhc.inc.php';
 
-// Customer ID from session
+// Fetch current user data
 $customerId = $_SESSION['userId'];
 $customer = null;
 
@@ -19,38 +19,34 @@ try {
     $stmt->execute(['customerId' => $customerId]);
     $customer = $stmt->fetch(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
-    die('Error fetching customer info: ' . $e->getMessage());
+    die('Error fetching customer data: ' . $e->getMessage());
 }
 
-// Initialize variables to store form input values and errors
-$firstName = $customer['customerFirstName'];
-$lastName = $customer['customerLastName'];
-$email = $customer['customerEmail'];
-$contactNumber = $customer['customerContactNumber'];
-$success = false;
 $errors = [];
+$success = false;
 
 // Handle form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save'])) {
-    // Retrieve form data
+    // Collect form data
     $firstName = trim($_POST['firstName'] ?? '');
     $lastName = trim($_POST['lastName'] ?? '');
     $email = trim($_POST['email'] ?? '');
     $contactNumber = preg_replace('/\D+/', '', $_POST['contactNumber'] ?? '');
+    $address = trim($_POST['address'] ?? '');
     $currentPassword = trim($_POST['currentPassword'] ?? '');
     $newPassword = trim($_POST['newPassword'] ?? '');
     $confirmPassword = trim($_POST['confirmPassword'] ?? '');
 
-    // Validate required fields (non-password)
+    // Validate required fields
     if (empty($firstName)) $errors[] = 'First Name is required.';
     if (empty($lastName)) $errors[] = 'Last Name is required.';
     if (empty($email)) $errors[] = 'Email is required.';
     elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) $errors[] = 'Invalid email format.';
     if (empty($contactNumber)) $errors[] = 'Contact Number is required.';
+    if (empty($address)) $errors[] = 'Address is required.';
 
     // Validate password changes if new password is provided
     if (!empty($newPassword)) {
-        // Check current password
         if (empty($currentPassword)) {
             $errors[] = 'Current Password is required to change your password.';
         } else {
@@ -67,24 +63,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save'])) {
             }
         }
 
-        // Validate new password and confirm password
         if (empty($confirmPassword)) {
-            $errors[] = 'Confirm Password is required.';
+            $errors[] = 'Current Password is required.';
         } elseif ($newPassword !== $confirmPassword) {
-            $errors[] = 'New password and confirm password do not match.';
+            $errors[] = 'Passwords do not match.';
         }
         if (strlen($newPassword) < 8) {
-            $errors[] = 'New Password must be at least 8 characters long.';
+            $errors[] = 'New Password must be at least 8 characters.';
         }
     }
 
-    // Check email uniqueness (if changed)
+    // Check email uniqueness if changed
     if ($email !== $customer['customerEmail']) {
         try {
             $stmtCheckEmail = $pdo->prepare("SELECT 1 FROM Customer WHERE customerEmail = :email");
             $stmtCheckEmail->execute(['email' => $email]);
             if ($stmtCheckEmail->fetchColumn()) {
-                $errors[] = 'Email address is already registered.';
+                $errors[] = 'Email is already registered.';
             }
         } catch (PDOException $e) {
             $errors[] = 'Database error checking email.';
@@ -95,19 +90,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save'])) {
     if (empty($errors)) {
         try {
             $sql = "UPDATE Customer 
-                SET customerFirstName = :firstName, 
-                customerLastName = :lastName,
-                customerEmail = :email,
-                customerContactNumber = :contactNumber";
+                    SET customerFirstName = :firstName, 
+                        customerLastName = :lastName,
+                        customerEmail = :email,
+                        customerContactNumber = :contactNumber,
+                        customerAddress = :address";
 
             $params = [
                 'firstName' => $firstName,
                 'lastName' => $lastName,
                 'email' => $email,
                 'contactNumber' => $contactNumber,
+                'address' => $address,
                 'customerId' => $customerId
             ];
 
+            // Add password update if provided
             if (!empty($newPassword)) {
                 $hashedNewPassword = password_hash($newPassword, PASSWORD_BCRYPT);
                 $sql .= ", customerPassword = :password";
@@ -126,8 +124,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save'])) {
             $customer = $stmtRefresh->fetch(PDO::FETCH_ASSOC);
 
             $success = true;
+
         } catch (PDOException $e) {
-            $errors[] = 'Database error updating customer information.';
+            $errors[] = 'Error updating profile: ' . $e->getMessage();
         }
     }
 }
+?>
