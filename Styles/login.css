@@ -4,6 +4,17 @@
     font-family: Inter;
 }
 
+.logo{
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.logo img{
+    width: 220px;
+    height: 200px;
+}
 
 .logo{
     width: 100%;

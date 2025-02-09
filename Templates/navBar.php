@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -6,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../Styles/navBar.css?v=<?php echo time(); ?>">
 </head>
+
 <body>
     <section class="navbar">
         <div class="main">
@@ -21,16 +24,21 @@
                 </ul>
             </div>
             <div class="action">
-                <button class="shopNowBtn actions" onclick="location.href='createAccount.php'">SHOP NOW</button>
+                
                 <a href="profilePage.php"><img class="actions imgBtns" src="../Images/Icon/username_icon.png" alt="profile"></a>
                 <a href="cartPage.php"><img class="actions imgBtns" src="../Images/Icon/cart_icon.png" alt="cart"></a>
+                <?php if (isset($_SESSION['userRole'])) { ?>
+                    <button class="shopNowBtn actions" onclick="location.href='../includes/logout.php'">Sign Out</button>
+                <?php } else { ?>
+                    <button class="shopNowBtn actions" onclick="location.href='login.php'">SHOP NOW</button>
+                <?php } ?>
             </div>
         </div>
         <div class="block">
             <p></p>
         </div>
         <div class="breadcrumb">
-                <img src="../Images/Icon/home_icon.png" alt="home">
+            <img src="../Images/Icon/home_icon.png" alt="home">
         </div>
     </section>
 </body>
