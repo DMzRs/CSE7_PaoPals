@@ -15,7 +15,6 @@ include_once '../includes/profilePage.inc.php';
     <link rel="stylesheet" href="../Styles/profilePage.css?v=<?php echo time(); ?>">
     <title>PaoPals</title>
 </head>
-
 <body>
     <?php include '../Templates/navBar.php'; ?>
     <section class="main-container">

@@ -47,6 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save'])) {
 
     // Validate password changes if new password is provided
     if (!empty($newPassword)) {
+        // Check current password
         if (empty($currentPassword)) {
             $errors[] = 'Current Password is required to change your password.';
         } else {
@@ -63,13 +64,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save'])) {
             }
         }
 
-        if (empty($confirmPassword)) {
-            $errors[] = 'Current Password is required.';
-        } elseif ($newPassword !== $confirmPassword) {
-            $errors[] = 'Passwords do not match.';
-        }
+        // Validate new password strength
         if (strlen($newPassword) < 8) {
-            $errors[] = 'New Password must be at least 8 characters.';
+            $errors[] = 'New Password must be at least 8 characters long.';
         }
     }
 
@@ -124,10 +121,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save'])) {
             $customer = $stmtRefresh->fetch(PDO::FETCH_ASSOC);
 
             $success = true;
-
         } catch (PDOException $e) {
             $errors[] = 'Error updating profile: ' . $e->getMessage();
         }
     }
 }
-?>
