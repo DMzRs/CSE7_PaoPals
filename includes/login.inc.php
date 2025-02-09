@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['signIn'])) {
     // Proceed if validation passes
     if (empty($errors)) {
         try {
-            // Check Admin table first
+            // Check Admin credentials
             $stmtAdmin = $pdo->prepare("SELECT adminId, adminName, adminPassword FROM Admin WHERE adminEmail = :email");
             $stmtAdmin->execute([':email' => $email]);
             $admin = $stmtAdmin->fetch(PDO::FETCH_ASSOC);
@@ -52,10 +52,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['signIn'])) {
 
             // Handle authentication failure
             $errors[] = "Invalid email or password. Please try again.";
-
         } catch (PDOException $e) {
             $errors[] = "Database error occurred. Please contact support.";
         }
     }
 }
-?>
