@@ -5,6 +5,7 @@ include_once '../includes/createAccount.inc.php';
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,8 +15,11 @@ include_once '../includes/createAccount.inc.php';
     <link rel="stylesheet" href="../Styles/createAccount.css?v=<?php echo time(); ?>">
     <title>Create Account</title>
 </head>
+
 <body>
-    <?php include('../Templates/navBar.php'); ?>
+    <section class="logo">
+        <img src="../Images/Logo/PaoPals_BigLogo.png" alt="logo">
+    </section>
     <section class="main-container">
         <div>
             <h1 class="header">Create an Account</h1>

@@ -4,12 +4,23 @@
     font-family: Inter;
 }
 
+.logo{
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.logo img{
+    width: 220px;
+    height: 200px;
+}
 
 .main-container{
     display: flex;
     flex-direction: column;
     margin: 0 auto;
-    margin-top: 200px;
+    margin-top: 50px;
     width: 100%;
     width: 1000px;
     align-items: center;
