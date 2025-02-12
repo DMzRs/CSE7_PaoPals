@@ -85,8 +85,9 @@
                                 <th>Name</th>
                                 <th>Category</th>
                                 <th>Quantity</th>
-                                <th>Date Arrived</th>
+                                <th>Date Created</th>
                                 <th>Expiry Date</th>
+                                <th>Status</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -96,6 +97,7 @@
                                 <td>1</td>
                                 <td>2/05/2025</td>
                                 <td>2/08/2025</td>
+                                <td>Expired</td>
                             </tr>
                             <tr>
                                 <td>Pork Asado Siopao</td>
@@ -103,6 +105,7 @@
                                 <td>1</td>
                                 <td>2/05/2025</td>
                                 <td>2/08/2025</td>
+                                <td>Available</td>
                             </tr>
                         </tbody>
                 </div>
