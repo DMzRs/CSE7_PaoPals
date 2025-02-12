@@ -108,28 +108,27 @@
     border-radius: 10px;
 }
 
-table {
+.table-containerS table {
     width: 100%;
     border-collapse: collapse;
     text-align: left;
 }
 
-th, td {
+.table-containerS th,.table-containerS td {
     padding: 20px;
     padding-left: 40px;
     color: #c14c4c;
 }
 
-th {
+.table-containerS th {
     border-top: 1px solid #CE5959;
     border-bottom: 1px solid #CE5959;
     font-weight: bold;
 }
 
-tbody {
+.table-containerS tbody {
     border-bottom: 1px solid #CE5959;
 }
-
 
 .modal-body{
     display: flex;
