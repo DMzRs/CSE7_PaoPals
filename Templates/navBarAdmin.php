@@ -7,13 +7,13 @@
     <link rel="stylesheet" href="../Styles/navBarAdmin.css?v=<?php echo time(); ?>">
 </head>
 <body>
-    <section class="navbar">
+    <section class="navbarS">
         <div class="main">
             <div class="logo">
                 <img src="../Images/Logo/PaoPals_logo.png" alt="logo">
             </div>
-            <div class="action">
-                <button class="logout" onclick="location.href='../MainPages/createAccount.php'">Logout</button>
+            <div class="actionS">
+                <button class="logoutS" onclick="location.href='../MainPages/createAccount.php'">Logout</button>
             </div>  
         </div>
     </section>
