@@ -2,20 +2,13 @@
 session_start();
 include_once '../includes/dbhc.inc.php';
 
-// Check admin access
+// Check if user is logged in as admin
 if (!isset($_SESSION['userRole']) || $_SESSION['userRole'] !== 'admin') {
     header('Location: ../MainPages/login.php');
     exit;
 }
 
-// Display session message
-if (isset($_SESSION['message'])) {
-    $message = $_SESSION['message'];
-    unset($_SESSION['message']);
-    echo "<div class='alert alert-{$message['type']}'>{$message['text']}</div>";
-}
-
-// Fetch inventory and product data
+// Fetch inventory data for display
 try {
     $stmt = $pdo->query("
         SELECT 
@@ -32,18 +25,16 @@ try {
     $inventoryRows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
     $inventoryRows = [];
-    echo "<div class='alert alert-danger'>Database error: " . $e->getMessage() . "</div>";
 }
 
+// Fetch products for restock dropdown
 try {
     $stmt = $pdo->query("SELECT productId, productName FROM Product ORDER BY productName");
     $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
     $products = [];
-    echo "<div class='alert alert-danger'>Database error: " . $e->getMessage() . "</div>";
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">

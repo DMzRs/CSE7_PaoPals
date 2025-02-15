@@ -1,6 +1,5 @@
 <?php
 include_once '../includes/dbhc.inc.php';
-include_once '../includes/contactUs.inc.php';
 ?>
 
 <!DOCTYPE html>

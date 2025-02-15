@@ -19,16 +19,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         'feedback' => $feedbackText
     ];
 
-    // Validation
+    // Input validation
     if (empty($name)) $errors[] = "Name is required.";
-    if (empty($email)) $errors[] = "Email is required.";
-    elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) $errors[] = "Invalid email format.";
+    if (empty($email)) {
+        $errors[] = "Email is required.";
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $errors[] = "Invalid email format.";
+    }
     if (empty($subject)) $errors[] = "Subject is required.";
     if (empty($feedbackText)) $errors[] = "Feedback is required.";
 
-    if (empty($errors) && $pdo) {
+    if (!empty($errors)) {
+        // Store errors and formData for re-display
+        $_SESSION['errors'] = $errors;
+        $_SESSION['formData'] = $formData;
+    } else {
         try {
-            // Prepare SQL statement
+            // Insert feedback into database
             $stmt = $pdo->prepare("INSERT INTO Feedback (name, email, subject, feedbackText) 
                                   VALUES (:name, :email, :subject, :feedback)");
             $stmt->execute([
@@ -37,21 +44,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 ':subject' => $subject,
                 ':feedback' => $feedbackText
             ]);
-
-            // Success message
+            // Store success message and clear formData
             $_SESSION['success'] = "Your feedback has been submitted successfully!";
+            // Remove formData from session as it's no longer needed
+            unset($_SESSION['formData']);
         } catch (PDOException $e) {
-            // Log the error
+            // Log database error and provide user feedback
             error_log("Database Error: " . $e->getMessage());
-            $errors[] = "Failed to submit feedback. Please try again later.";
+            $errors[] = "Failed to submit feedback. Please try again.";
+            $_SESSION['errors'] = $errors;
+            $_SESSION['formData'] = $formData;
         }
     }
 
-    // Store session data
-    $_SESSION['errors'] = $errors;
-    $_SESSION['formData'] = $formData;
-
-    // Redirect back to the form
+    // Redirect to prevent form resubmission
     header("Location: ../MainPages/contactUsPage.php");
     exit();
 }
