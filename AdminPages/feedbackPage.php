@@ -1,45 +1,82 @@
+<?php
+session_start();
+// Include database connection
+include_once '../includes/dbhc.inc.php';
+
+// Check if user is logged in as admin
+if (!isset($_SESSION['userRole']) || $_SESSION['userRole'] !== 'admin') {
+    header('Location: ../MainPages/login.php');
+    exit;
+}
+
+// Fetch feedbacks using PDO
+function getFeedbacks(PDO $pdo)
+{
+    $sql = "SELECT * FROM Feedback ORDER BY submissionDate DESC";
+    try {
+        $stmt = $pdo->query($sql);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        error_log("Database query failed: " . $e->getMessage());
+        return [];
+    }
+}
+
+$feedbacks = getFeedbacks($pdo);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../AdminStyles/feedbackPage.css?v=<?php echo time(); ?>">
-    <title>PaoPals</title>
+    <link rel="stylesheet" href="../AdminStyles/feedbackPage.css?v=<?= time(); ?>">
+    <title>PaoPals Admin - Feedback</title>
 </head>
+
 <body>
     <?php include '../Templates/navBarAdmin.php'; ?>
 
     <section class="main-container">
         <div class="header-container">
-            <h1>James Oliver Mendoza</h1>
+            <h1>Welcome, <?= htmlspecialchars($_SESSION['userName'] ?? 'Admin') ?></h1>
         </div>
         <div class="first-container">
             <div class="tab-container">
                 <a class="dashboard" href="mainDashboard.php">Dashboard</a>
                 <a class="products" href="productPage.php">Products</a>
                 <a class="inventory" href="inventoryPage.php">Inventory</a>
-                <a class="feedback" href="feedbackPage.php">Feedbacks</a>
+                <a class="feedback current-tab" href="feedbackPage.php">Feedbacks</a>
             </div>
             <div class="feedback-container">
-                <h1 class="feedbackHeader">Feedback</h1>
+                <h1 class="feedbackHeader">Feedbacks</h1>
                 <div class="feedbacks">
-                    <div class="message-container">
-                        <!-- same logic dri message class dapat mag sugod ang element insert same format -->
-                        <div class="message">
-                            <div class="message-header">
-                            <strong>From James Oleber</strong>
-                            <span class="date">2/05/2025</span>
+                    <?php if (!empty($feedbacks)): ?>
+                        <?php foreach ($feedbacks as $feedback): ?>
+                            <div class="message-container">
+                                <div class="message">
+                                    <div class="message-header">
+                                        <strong>From <?= htmlspecialchars($feedback['name']) ?> (<?= htmlspecialchars($feedback['email']) ?>)</strong>
+                                        <span class="date"><?= date('m/d/Y', strtotime($feedback['submissionDate'])) ?></span>
+                                    </div>
+                                    <p><?= nl2br(htmlspecialchars($feedback['feedbackText'])) ?></p>
+                                </div>
                             </div>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit omnis voluptas fugiat hic eaque quisquam optio. Vitae ipsum quos nobis odio, deleniti eius reiciendis harum minus, quaerat dolor ratione consectetur?Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vel provident id voluptatum a, sunt, incidunt expedita ullam debitis magni ipsa molestias. Numquam dolorem et doloribus culpa quia consequatur ullam sint.</p>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <div class="no-feedbacks">
+                            <h3>No Feedbacks Received Yet</h3>
+                            <p>Keep an eye out for customer feedback!</p>
                         </div>
-                    </div>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
     </section>
 </body>
+
 </html>

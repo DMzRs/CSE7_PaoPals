@@ -29,15 +29,15 @@
                 <h3 class="categoryHeader">Category</h3>
                 <div class="categories">
                     <div class="siopao">
-                        <img src="../Images/Siopao/sample_1.png" alt="siopao">
+                        <a href="#"><img src="../Images/Siopao/sample_1.png" alt="siopao"></a>
                         <h2>Siopao</h2>
                     </div>
                     <div class="drinks">
-                        <img src="../Images/Drinks/drink1.png" alt="drink">
+                        <a href="#"><img src="../Images/Drinks/drink1.png" alt="drink"></a>
                         <h2>Drinks</h2>
                     </div>
                     <div class="desserts">
-                        <img src="../Images/Desserts/dessert1.png" alt="dessert">
+                        <a href="#"><img src="../Images/Desserts/dessert1.png" alt="dessert"></a>
                         <h2>Desserts</h2>
                     </div>
                 </div>
