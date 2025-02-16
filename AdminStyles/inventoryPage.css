@@ -170,3 +170,13 @@
     outline: 0;
     border-bottom: 1px solid black;
 }
+
+.modal-buttons{
+    display: flex;
+    justify-content: end;
+    width: 100%;
+}
+
+#restock{
+    padding-left: 30px;
+}

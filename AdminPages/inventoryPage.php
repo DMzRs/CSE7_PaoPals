@@ -2,11 +2,7 @@
 session_start();
 include_once '../includes/dbhc.inc.php';
 
-// Check if user is logged in as admin
-if (!isset($_SESSION['userRole']) || $_SESSION['userRole'] !== 'admin') {
-    header('Location: ../MainPages/login.php');
-    exit;
-}
+
 
 // Fetch inventory data for display
 try {
@@ -67,7 +63,7 @@ try {
                     <button type="button" class="addStockBtn" data-bs-toggle="modal" data-bs-target="#addStocksModal">
                         Add Stocks
                     </button>
-                    <button type="button" class="addStockBtn" data-bs-toggle="modal" data-bs-target="#restockModal">
+                    <button type="button" class="addStockBtn" id="restock" data-bs-toggle="modal" data-bs-target="#restockModal">
                         Restock Product
                     </button>
                 </div>
@@ -94,7 +90,7 @@ try {
                                         <select class="form-select" name="category" required>
                                             <option value="Siopao">Siopao</option>
                                             <option value="Drinks">Drinks</option>
-                                            <option value="Desserts">Desserts</option>
+                                            <option value="Dessert">Dessert</option>
                                         </select>
                                     </div>
                                     <div class="mb-3">

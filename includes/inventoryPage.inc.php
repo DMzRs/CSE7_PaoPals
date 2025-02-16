@@ -1,6 +1,12 @@
 <?php
 session_start();
 
+// Check if user is logged in as admin
+if (!isset($_SESSION['userRole']) || $_SESSION['userRole'] !== 'admin') {
+    header('Location: ../MainPages/login.php');
+    exit;
+}
+
 include_once 'dbhc.inc.php';
 
 $errors = [];

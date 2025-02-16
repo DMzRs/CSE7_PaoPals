@@ -21,7 +21,7 @@ try {
             COALESCE(SUM(i.stockQuantity), 0) AS stockQuantity
         FROM Product p
         LEFT JOIN Inventory i ON p.productId = i.productId
-        WHERE p.productCategory = 'Siopao'
+        WHERE p.productCategory = 'Drinks'
             AND (i.expirationDate >= CURDATE() OR i.stockQuantity IS NULL)
         GROUP BY p.productId, p.productName, p.productImage, p.productPrice
         ORDER BY p.productName
@@ -79,7 +79,7 @@ try {
                     </div>
                 </div>
                 <div class="product-container">
-                    <h1>Siopao</h1>
+                    <h1>Drinks</h1>
                     <div class="items-container">
                         <?php foreach ($siopaoProducts as $product): ?>
                             <div class="item-container">
