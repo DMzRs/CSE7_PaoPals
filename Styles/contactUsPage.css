@@ -53,6 +53,11 @@
     background-color: #FEFAF8;
 }
 
+.form-container > form > textarea{
+    resize: none; /* Prevents resizing */
+
+}
+
 .inputs{
     padding: 10px;
     width: 500px;

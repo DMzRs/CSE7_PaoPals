@@ -43,7 +43,7 @@ include_once '../includes/dbhc.inc.php';
                         value="<?= htmlspecialchars($_SESSION['formData']['subject'] ?? '') ?>">
                     <textarea class="inputs" rows="20" cols="50" id="feedback"
                         name="feedback" placeholder="Enter your feedback" required>
-                        <?= htmlspecialchars($_SESSION['formData']['feedback'] ?? '') ?></textarea>
+                        <?= htmlspecialchars(trim($_SESSION['formData']['feedback'] ?? '')) ?></textarea>
                     <button class="submitBtn" name="submitFeedback">Submit</button>
                 </form>
             </div>
