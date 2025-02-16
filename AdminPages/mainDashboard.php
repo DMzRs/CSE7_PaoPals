@@ -41,7 +41,7 @@ include_once '../includes/mainDashboard.inc.php';
                 <h1 class="dashboardHeader">Dashboard</h1>
                 <div class="main-content">
                     <div class="totalIncome">
-                        <h2>Siopao</h2>
+                        <h2>Total Income</h2>
                         <h1>₱<?= number_format($totalIncome, 2) ?></h1>
                     </div>
                     <div class="orderCount">
