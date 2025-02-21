@@ -8,7 +8,6 @@ if (!isset($_SESSION['userRole']) || $_SESSION['userRole'] !== 'admin') {
     exit;
 }
 
-// Fetch Siopao products with stock quantities
 $siopaoProducts = [];
 
 try {
@@ -18,12 +17,15 @@ try {
             p.productName,
             p.productImage,
             p.productPrice,
-            COALESCE(SUM(i.stockQuantity), 0) AS stockQuantity
+            COALESCE(SUM(si.remainingQuantity), 0) AS stockQuantity
         FROM Product p
-        LEFT JOIN Inventory i ON p.productId = i.productId
-        WHERE p.productCategory = 'Dessert'
-            AND (i.expirationDate >= CURDATE() OR i.stockQuantity IS NULL)
-        GROUP BY p.productId, p.productName, p.productImage, p.productPrice
+        LEFT JOIN StockIn si ON p.productId = si.productId
+        WHERE 
+            p.productCategory = 'Dessert' 
+            AND (si.expirationDate >= CURDATE() OR si.expirationDate IS NULL)
+            AND si.status = 'Available'
+        GROUP BY 
+            p.productId, p.productName, p.productImage, p.productPrice
         ORDER BY p.productName
     ");
     $siopaoProducts = $stmt->fetchAll(PDO::FETCH_ASSOC);

@@ -20,7 +20,7 @@
         <div class="menu-options">
             <h1>Menu</h1>
             <ul>
-                <li class="active">
+                <li>
                     <h2><a href="../MainPages/menuPage.php">All</a></h2>
                 </li>
                 <li>
@@ -29,13 +29,13 @@
                 <li>
                     <h2><a href="../MainPages/drinksPage.php">Drinks</a></h2>
                 </li>
-                <li>
+                <li class="active">
                     <h2><a href="../MainPages/dessertPage.php">Dessert</a></h2>
                 </li>
             </ul>
         </div>
         <div class="menu-products">
-            <h2 class="product-category">All Products</h2>
+            <h2 class="product-category">Dessert</h2>
             <div class="products">
                 <!-- Examples  -->
                 <div class="product-container">

@@ -1,35 +1,51 @@
 <?php
 session_start();
 
-// Check if user is logged in as admin
+// Include database connection
+include_once '../includes/dbhc.inc.php';
+
+// Check admin access
 if (!isset($_SESSION['userRole']) || $_SESSION['userRole'] !== 'admin') {
     header('Location: ../MainPages/login.php');
     exit;
 }
 
-include_once 'dbhc.inc.php';
-
 $errors = [];
 $success = false;
 
+// Helper function to redirect with messages
+function redirectWithMessage($success, $message, $url)
+{
+    $_SESSION['message'] = [
+        'type' => $success ? 'success' : 'danger',
+        'text' => $message
+    ];
+    header('Location: ' . $url);
+    exit;
+}
+
 // Process Add Stock form
 if (isset($_POST['addStock'])) {
+    // Retrieve form data
     $productName = trim($_POST['productName']);
     $category = trim($_POST['category']);
-    $productPrice = (float)$_POST['productPrice'];
-    $dateArrived = $_POST['dateArrived'];
+    $productPrice = trim($_POST['productPrice']);
+    $dateCreated = $_POST['dateArrived'];
     $expiryDate = trim($_POST['expiryDate']);
-    $stockQuantity = (int)$_POST['stockQuantity'];
+    $quantity = (int)$_POST['stockQuantity'];
     $imageFile = $_FILES['imagefile'];
 
+    // Validation
     if (empty($productName)) $errors[] = 'Product name is required.';
     if (empty($category)) $errors[] = 'Category is required.';
     if (empty($_FILES['imagefile']['name'])) $errors[] = 'Product image is required.';
-    if (empty($dateArrived)) $errors[] = 'Date created is required.';
+    if (empty($dateCreated)) $errors[] = 'Date created is required.';
     if (empty($expiryDate)) $errors[] = 'Expiry date is required.';
-    if ($stockQuantity <= 0) $errors[] = 'Stock quantity must be positive.';
+    if ($quantity <= 0) $errors[] = 'Stock quantity must be positive.';
     if ($productPrice <= 0) $errors[] = 'Product price must be positive.';
+    if (strtotime($expiryDate) < strtotime($dateCreated)) $errors[] = 'Expiry date cannot be before date created.';
 
+    // Handle image upload
     $targetDir = '../Images/products/';
     $fileName = time() . '_' . basename($imageFile['name']);
     $targetFile = $targetDir . $fileName;
@@ -40,6 +56,7 @@ if (isset($_POST['addStock'])) {
 
     if (empty($errors)) {
         try {
+            // Insert into Product
             $stmt = $pdo->prepare("
                 INSERT INTO Product (productName, productCategory, productImage, productPrice)
                 VALUES (?, ?, ?, ?)
@@ -47,13 +64,14 @@ if (isset($_POST['addStock'])) {
             $stmt->execute([$productName, $category, $fileName, $productPrice]);
             $productId = $pdo->lastInsertId();
 
+            // Insert into StockIn
             $stmt = $pdo->prepare("
-                INSERT INTO Inventory (productId, dateCreated, expirationDate, stockQuantity)
-                VALUES (?, ?, ?, ?)
+                INSERT INTO StockIn (productId, quantity, remainingQuantity, dateCreated, expirationDate, status)
+                VALUES (?, ?, ?, ?, ?, 'Available')
             ");
-            $stmt->execute([$productId, $dateArrived, $expiryDate, $stockQuantity]);
+            $stmt->execute([$productId, $quantity, $quantity, $dateCreated, $expiryDate]);
 
-            $success = true;
+            redirectWithMessage(true, 'Product added successfully.', '../AdminPages/inventoryPage.php');
         } catch (PDOException $e) {
             $errors[] = 'Database error: ' . $e->getMessage();
         }
@@ -61,44 +79,36 @@ if (isset($_POST['addStock'])) {
 }
 
 // Process Restock form
-elseif (isset($_POST['restock'])) {
+if (isset($_POST['restock'])) {
+    // Retrieve form data
     $productId = (int)$_POST['productId'];
     $quantity = (int)$_POST['qtyRestock'];
-    $restockDate = $_POST['restockDate'];
+    $dateCreated = $_POST['restockDate'];
     $expiryDate = trim($_POST['newExpDate']);
 
+    // Validation
     if ($quantity <= 0) $errors[] = 'Restock quantity must be positive.';
-    if (strtotime($expiryDate) < time()) $errors[] = 'Expiry date cannot be in the past.';
-
-    $stmt = $pdo->prepare("SELECT productId FROM Product WHERE productId = ?");
-    $stmt->execute([$productId]);
-    if (!$stmt->fetch(PDO::FETCH_ASSOC)) {
-        $errors[] = 'Product not found.';
-    }
+    if (empty($dateCreated)) $errors[] = 'Restock date is required.';
+    if (empty($expiryDate)) $errors[] = 'New expiry date is required.';
+    if (strtotime($expiryDate) < strtotime($dateCreated)) $errors[] = 'Expiry date cannot be before restock date.';
 
     if (empty($errors)) {
         try {
+            // Insert into StockIn
             $stmt = $pdo->prepare("
-                INSERT INTO Inventory (productId, dateCreated, expirationDate, stockQuantity)
-                VALUES (?, ?, ?, ?)
+                INSERT INTO StockIn (productId, quantity, remainingQuantity, dateCreated, expirationDate, status)
+                VALUES (?, ?, ?, ?, ?, 'Available')
             ");
-            $stmt->execute([$productId, $restockDate, $expiryDate, $quantity]);
+            $stmt->execute([$productId, $quantity, $quantity, $dateCreated, $expiryDate]);
 
-            $success = true;
+            redirectWithMessage(true, 'Product restocked successfully.', '../AdminPages/inventoryPage.php');
         } catch (PDOException $e) {
             $errors[] = 'Database error: ' . $e->getMessage();
         }
     }
 }
 
-// Store messages
-if ($success) {
-    $_SESSION['message'] = ['type' => 'success', 'text' => 'Operation successful!'];
-} else {
-    $_SESSION['message'] = ['type' => 'danger', 'text' => implode('\n', $errors)];
+// Handle remaining errors
+if (!empty($errors)) {
+    redirectWithMessage(false, implode('<br>', $errors), '../AdminPages/inventoryPage.php');
 }
-
-// Redirect back
-header('Location: ../AdminPAges/inventoryPage.php');
-exit;
-?>

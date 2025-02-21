@@ -38,8 +38,9 @@
                 <h2>Sample Product Name</h2>
             </div>
             <div class="orderImg">
-                <img src="../Images/Siopao/sample_1.png" alt="sampleOrder">
+                <img src="../Images/products/sample_1.png" alt="product1">
             </div>
+            <!-- base price of the item -->
             <div class="orderPrice">
                 <h2>₱90.00</h2>
             </div>
@@ -48,17 +49,19 @@
                     <h2>1</h2>
                     <button class="increaseQuantity"><img src="../Images/Icon/add_icon.png" alt="add"></button>
             </div>
+            <!-- Total price item example, 2 siopao (2 * 90) = 180 -->
             <div class="orderTotalPrice">
                 <h2>₱90.00</h2>
             </div>
             <div class="orderDelete">
-                <img src="../Images/Icon/deleteOrder_icon.png" alt="deleteOrder">
+                <button style="border: none; cursor: pointer;"><img src="../Images/Icon/deleteOrder_icon.png" alt="deleteOrder"></button>
             </div>
         </div>
         <div class="total-cost-container">
             <div class="totalCostTitle">
                 <h2>Total Cost:</h2>
             </div>
+            <!-- total cost of each items -->
             <div class="totalCost">
                 <h2>₱90.00</h2>
             </div>
@@ -68,7 +71,7 @@
             <button class="checkOut"><h2>Checkout</h2></button>
         </div>
 
-        <!-- Kani kung EMPTY -->
+        <!-- If EMPTY -->
         <!-- <div class="titleEmpty">
             <h1>Your Cart is Empty</h1>
             <h3>Your cart is currently empty! Start adding your favorite siopao and treats from our menu to enjoy a delicious meal today!</h3>

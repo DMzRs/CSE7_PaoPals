@@ -83,6 +83,19 @@
     font-weight: 700;
 }
 
+.labels{
+    align-self: flex-start;
+    margin: 0 auto;
+    margin-left: 20px;
+    margin-top: 20px;
+    font-size: 40px;
+    color: #CE5959;
+    display: block;
+    width: 1380px;
+    font-weight: 700;
+    padding-left: 140px;
+}
+
 .addStockBtn{
     align-self: flex-end;
     padding: 10px 20px;

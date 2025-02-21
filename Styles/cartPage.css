@@ -122,10 +122,12 @@
 
 .reduceQuantity{
     margin-bottom: 7px; 
+    cursor: pointer;
 }
 
 .increaseQuantity{
     margin-top: 2px;
+    cursor: pointer;
 }
 
 .orderTotalPrice{
