@@ -17,6 +17,7 @@ try {
     $stmt = $pdo->query("SELECT COUNT(orderId) FROM `Order`");
     $orderCount = $stmt->fetchColumn();
 
+    // Calculate Customer Count
     $stmt = $pdo->query("SELECT COUNT(customerId) FROM Customer");
     $customerCount = $stmt->fetchColumn();
 
