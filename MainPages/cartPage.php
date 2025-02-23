@@ -97,7 +97,14 @@
             const data = await response.json();
 
             const orderContainers = document.querySelector('.order-containers');
-            orderContainers.innerHTML = data.length ? '' : '<div class="empty-cart">Your cart is empty.</div>';
+            orderContainers.innerHTML = data.length ? '' : `
+    <div class="titleEmpty">
+        <h1>Your Cart is Empty</h1>
+        <h3>Your cart is currently empty! Start adding your favorite siopao and treats from our menu to enjoy a delicious meal today!</h3>
+    </div>
+    
+`;
+
 
             data.forEach(item => {
                 const orderItem = document.createElement('div');
