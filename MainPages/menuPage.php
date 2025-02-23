@@ -1,4 +1,4 @@
-<?php 
+<?php
 include '../Templates/navBar.php'; ?>
 
 <!DOCTYPE html>
@@ -16,10 +16,18 @@ include '../Templates/navBar.php'; ?>
         <div class="menu-options">
             <h1>Menu</h1>
             <ul>
-                <li class="active"><h2><a href="../MainPages/menuPage.php">All</a></h2></li>
-                <li><h2><a href="../MainPages/siopaoPage.php">Siopao</a></h2></li>
-                <li><h2><a href="../MainPages/drinksPage.php">Drinks</a></h2></li>
-                <li><h2><a href="../MainPages/dessertPage.php">Dessert</a></h2></li>
+                <li class="active">
+                    <h2><a href="../MainPages/menuPage.php">All</a></h2>
+                </li>
+                <li>
+                    <h2><a href="../MainPages/siopaoPage.php">Siopao</a></h2>
+                </li>
+                <li>
+                    <h2><a href="../MainPages/drinksPage.php">Drinks</a></h2>
+                </li>
+                <li>
+                    <h2><a href="../MainPages/dessertPage.php">Dessert</a></h2>
+                </li>
             </ul>
         </div>
 
@@ -30,37 +38,46 @@ include '../Templates/navBar.php'; ?>
     </section>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function() {
             fetch("../includes/fetchProducts.php")
                 .then(response => response.json())
                 .then(data => {
                     const productList = document.getElementById("product-list");
-                    productList.innerHTML = data.map(product => `
-                        <div class="product-container">
-                            <img src="../Images/products/${product.productImage}" alt="${product.productName}">
-                            <h2>${product.productName}</h2>
-                            <p>Price: ₱${parseFloat(product.productPrice).toFixed(2)}</p>
-                            <button class="orderBtn" data-id="${product.productId}">ORDER</button>
-                        </div>
-                    `).join("");
+                    productList.innerHTML = data.map(product => {
+                        const isOutOfStock = product.remainingStock <= 0; // Ensure your PHP query includes remaining stock
 
-                    document.querySelectorAll(".orderBtn").forEach(button => {
-                        button.addEventListener("click", function () {
+                        return `
+                    <div class="product-container">
+                        <img src="../Images/products/${product.productImage}" alt="${product.productName}">
+                        <h2>${product.productName}</h2>
+                        <p>Price: ₱${parseFloat(product.productPrice).toFixed(2)}</p>
+                        <button class="orderBtn" data-id="${product.productId}" ${isOutOfStock ? 'disabled' : ''}>
+                            ${isOutOfStock ? 'Out of Stock' : 'ORDER'}
+                        </button>
+                    </div>
+                `;
+                    }).join("");
+
+                    document.querySelectorAll(".orderBtn:not([disabled])").forEach(button => {
+                        button.addEventListener("click", function() {
                             let productId = this.getAttribute("data-id");
 
                             fetch("../includes/addToOrder.php", {
-                                method: "POST",
-                                headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                                body: "productId=" + productId
-                            })
-                            .then(response => response.json())
-                            .then(data => {
-                                alert(data.message);
-                            });
+                                    method: "POST",
+                                    headers: {
+                                        "Content-Type": "application/x-www-form-urlencoded"
+                                    },
+                                    body: "productId=" + productId
+                                })
+                                .then(response => response.json())
+                                .then(data => {
+                                    alert(data.message);
+                                });
                         });
                     });
                 });
         });
     </script>
 </body>
+
 </html>
