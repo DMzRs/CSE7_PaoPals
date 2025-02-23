@@ -31,20 +31,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['signIn'])) {
 
             if ($admin && password_verify($password, $admin['adminPassword'])) {
                 $_SESSION['userRole'] = 'admin';
+                $_SESSION['customerLoggedIn'] = true; // ✅ Ensures admin is marked as logged in
                 $_SESSION['userId'] = $admin['adminId'];
                 $_SESSION['userName'] = $admin['adminName'];
                 header('Location: ../AdminPages/mainDashboard.php');
                 exit;
             }
 
-            // If Admin verification fails, check Customer table
+            // Check Customer credentials
             $stmtCustomer = $pdo->prepare("SELECT customerId, customerFirstName, customerPassword FROM Customer WHERE customerEmail = :email");
             $stmtCustomer->execute([':email' => $email]);
             $customer = $stmtCustomer->fetch(PDO::FETCH_ASSOC);
 
             if ($customer && password_verify($password, $customer['customerPassword'])) {
                 $_SESSION['userRole'] = 'customer';
-                $_SESSION['userId'] = $customer['customerId'];
+                $_SESSION['customerLoggedIn'] = true; // ✅ Fixes the issue by ensuring this session variable is set
+                $_SESSION['customerId'] = $customer['customerId'];
                 $_SESSION['userName'] = $customer['customerFirstName'];
                 header('Location: ../MainPages/menuPage.php');
                 exit;
@@ -57,3 +59,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['signIn'])) {
         }
     }
 }
+?>

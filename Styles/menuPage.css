@@ -101,7 +101,14 @@
     font-size: 12px;
     font-weight: 700;
     color: white;
+    cursor: pointer;
 }
+
+.orderBtn:hover{
+    background-color: #B54747;
+}
+
+
 
 .active{
     background-color: #CE5959;

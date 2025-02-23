@@ -1,29 +1,33 @@
 <?php
 session_start();
+include_once '../includes/dbhc.inc.php';
+include_once '../includes/session.php'; // Include the session logic
 
 // Redirect unauthorized users
-if (!isset($_SESSION['userRole']) || $_SESSION['userRole'] !== 'customer') {
+if (!isAuthenticated()) {
     header('Location: ../MainPages/login.php');
     exit;
 }
 
-// Database connection
-include_once '../includes/dbhc.inc.php';
-
-// Fetch current user data
-$customerId = $_SESSION['userId'];
+// Get customer ID from session
+$customerId = getCustomerId();
 $customer = null;
+$errors = [];
+$success = false;
 
 try {
     $stmt = $pdo->prepare("SELECT * FROM Customer WHERE customerId = :customerId");
     $stmt->execute(['customerId' => $customerId]);
     $customer = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    // If customer data is not found, redirect to login
+    if (!$customer) {
+        header('Location: ../MainPages/login.php');
+        exit;
+    }
 } catch (PDOException $e) {
     die('Error fetching customer data: ' . $e->getMessage());
 }
-
-$errors = [];
-$success = false;
 
 // Handle form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save'])) {
@@ -35,7 +39,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save'])) {
     $address = trim($_POST['address'] ?? '');
     $currentPassword = trim($_POST['currentPassword'] ?? '');
     $newPassword = trim($_POST['newPassword'] ?? '');
-    $confirmPassword = trim($_POST['confirmPassword'] ?? '');
 
     // Validate required fields
     if (empty($firstName)) $errors[] = 'First Name is required.';
@@ -47,7 +50,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save'])) {
 
     // Validate password changes if new password is provided
     if (!empty($newPassword)) {
-        // Check current password
         if (empty($currentPassword)) {
             $errors[] = 'Current Password is required to change your password.';
         } else {
@@ -64,7 +66,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save'])) {
             }
         }
 
-        // Validate new password strength
         if (strlen($newPassword) < 8) {
             $errors[] = 'New Password must be at least 8 characters long.';
         }
@@ -73,8 +74,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save'])) {
     // Check email uniqueness if changed
     if ($email !== $customer['customerEmail']) {
         try {
-            $stmtCheckEmail = $pdo->prepare("SELECT 1 FROM Customer WHERE customerEmail = :email");
-            $stmtCheckEmail->execute(['email' => $email]);
+            $stmtCheckEmail = $pdo->prepare("SELECT 1 FROM Customer WHERE customerEmail = :email AND customerId != :customerId");
+            $stmtCheckEmail->execute(['email' => $email, 'customerId' => $customerId]);
             if ($stmtCheckEmail->fetchColumn()) {
                 $errors[] = 'Email is already registered.';
             }
@@ -102,7 +103,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save'])) {
                 'customerId' => $customerId
             ];
 
-            // Add password update if provided
             if (!empty($newPassword)) {
                 $hashedNewPassword = password_hash($newPassword, PASSWORD_BCRYPT);
                 $sql .= ", customerPassword = :password";
@@ -110,7 +110,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save'])) {
             }
 
             $sql .= " WHERE customerId = :customerId";
-            $params['customerId'] = $customerId;
 
             $stmtUpdate = $pdo->prepare($sql);
             $stmtUpdate->execute($params);
@@ -126,3 +125,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save'])) {
         }
     }
 }
+?>

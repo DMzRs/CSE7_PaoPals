@@ -130,7 +130,7 @@
 .table-containerS th,.table-containerS td {
     padding: 20px;
     padding-left: 20px;
-    color: #c14c4c;
+    color: #c14c4c !important; 
     text-align: center;
 }
 

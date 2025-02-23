@@ -1,7 +1,34 @@
 <?php
+session_start();
+
+// Debugging: Uncomment to check session values
+// echo "<pre>"; print_r($_SESSION); echo "</pre>"; exit;
+
+// Redirect unauthorized users
+if (!isset($_SESSION['customerLoggedIn']) || $_SESSION['customerLoggedIn'] !== true) {
+    header('Location: ../MainPages/login.php');
+    exit;
+}
+
+// Database connection
 include_once '../includes/dbhc.inc.php';
-include_once '../includes/profilePage.inc.php';
+
+// Fetch current user data
+$customerId = $_SESSION['customerId'];
+$customer = null;
+
+try {
+    $stmt = $pdo->prepare("SELECT * FROM Customer WHERE customerId = :customerId");
+    $stmt->execute(['customerId' => $customerId]);
+    $customer = $stmt->fetch(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    die('Error fetching customer data: ' . $e->getMessage());
+}
+
+$errors = [];
+$success = false;
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
