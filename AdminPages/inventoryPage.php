@@ -105,7 +105,7 @@ try {
                             </div>
                             <div class="modal-body">
                                 <form method="POST" action="../includes/inventoryPage.inc.php" enctype="multipart/form-data">
-                                    <div class="mb-3">
+                                    <div class="mb-3" style="width: 600px;">
                                         <label class="form-label">Product Image:</label>
                                         <input type="file" class="form-control" name="imagefile" required>
                                     </div>
@@ -153,7 +153,7 @@ try {
                             </div>
                             <div class="modal-body">
                                 <form method="POST" action="../includes/inventoryPage.inc.php">
-                                    <div class="mb-3">
+                                    <div class="mb-3" style="width: 400px;">
                                         <label class="form-label">Product:</label>
                                         <select class="form-select" name="productId" required>
                                             <?php foreach ($products as $product): ?>
