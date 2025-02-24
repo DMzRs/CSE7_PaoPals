@@ -113,3 +113,14 @@
 .active{
     background-color: #CE5959;
 }
+
+.orderBtn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.stock-status {
+    font-size: 14px;
+    color: red;
+}

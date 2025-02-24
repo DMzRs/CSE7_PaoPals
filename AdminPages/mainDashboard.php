@@ -60,7 +60,7 @@ include_once '../includes/mainDashboard.inc.php';
                             <tr>
                                 <th>Rank</th>
                                 <th>Menu Items</th>
-                                <th>Orders</th>
+                                <th>Product Sold</th>
                             </tr>
                         </thead>
                         <tbody>

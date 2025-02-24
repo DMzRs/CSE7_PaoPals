@@ -81,17 +81,24 @@
                 .then(data => {
                     if (data.success) {
                         const bestSellerContainer = document.querySelector(".best-seller-container");
-                        bestSellerContainer.innerHTML = data.products.map(product => `
-                        <div class="bs-containers">
-                            <img src="../Images/products/${product.productImage}" alt="${product.productName}">
-                            <h2>${product.productName}</h2>
-                            <p>₱${parseFloat(product.productPrice).toFixed(2)}</p>
-                            <button class="orderNowBtn" data-id="${product.productId}">ORDER NOW</button>
-                        </div>
-                    `).join("");
+                        bestSellerContainer.innerHTML = data.products.map(product => {
+                            const isOutOfStock = product.remainingStock <= 0;
 
-                        // Add event listener to order buttons
-                        document.querySelectorAll(".orderNowBtn").forEach(button => {
+                            return `
+                            <div class="bs-containers">
+                                <img src="../Images/products/${product.productImage}" alt="${product.productName}">
+                                <h2>${product.productName}</h2>
+                                <p>₱${parseFloat(product.productPrice).toFixed(2)}</p>
+                                <button class="orderNowBtn" data-id="${product.productId}" 
+                                    ${isOutOfStock ? 'disabled style="background: gray; cursor: not-allowed;"' : ''}>
+                                    ${isOutOfStock ? 'Out of Stock' : 'ORDER NOW'}
+                                </button>
+                            </div>
+                        `;
+                        }).join("");
+
+                        // Attach event listeners only for available products
+                        document.querySelectorAll(".orderNowBtn:not([disabled])").forEach(button => {
                             button.addEventListener("click", function() {
                                 let productId = this.getAttribute("data-id");
 
@@ -112,6 +119,7 @@
                 });
         });
     </script>
+
 
 </body>
 

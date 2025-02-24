@@ -36,28 +36,33 @@ include '../Templates/navBar.php';
                 .then(response => response.json())
                 .then(data => {
                     const productList = document.getElementById("product-list");
-                    productList.innerHTML = data.map(product => `
-                        <div class="product-container">
-                            <img src="../Images/products/${product.productImage}" alt="${product.productName}">
-                            <h2>${product.productName}</h2>
-                            <p>Price: ₱${parseFloat(product.productPrice).toFixed(2)}</p>
-                            <button class="orderBtn" data-id="${product.productId}">ORDER</button>
-                        </div>
-                    `).join("");
+                    productList.innerHTML = data.map(product => {
+                        const isOutOfStock = product.remainingStock <= 0;
 
-                    document.querySelectorAll(".orderBtn").forEach(button => {
+                        return `
+                            <div class="product-container">
+                                <img src="../Images/products/${product.productImage}" alt="${product.productName}">
+                                <h2>${product.productName}</h2>
+                                <p>Price: ₱${parseFloat(product.productPrice).toFixed(2)}</p>
+                                <button class="orderBtn" data-id="${product.productId}" 
+                                    ${isOutOfStock ? 'disabled style="background: gray; cursor: not-allowed;"' : ''}>
+                                    ${isOutOfStock ? 'Out of Stock' : 'ORDER'}
+                                </button>
+                            </div>
+                        `;
+                    }).join("");
+
+                    document.querySelectorAll(".orderBtn:not([disabled])").forEach(button => {
                         button.addEventListener("click", function () {
                             let productId = this.getAttribute("data-id");
 
                             fetch("../includes/addToOrder.php", {
-                                method: "POST",
-                                headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                                body: "productId=" + productId
-                            })
-                            .then(response => response.json())
-                            .then(data => {
-                                alert(data.message);
-                            });
+                                    method: "POST",
+                                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                                    body: "productId=" + productId
+                                })
+                                .then(response => response.json())
+                                .then(data => { alert(data.message); });
                         });
                     });
                 });

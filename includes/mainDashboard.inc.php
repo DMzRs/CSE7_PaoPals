@@ -23,15 +23,17 @@ try {
 
     // Get Best Selling Products
     $stmt = $pdo->query("
-        SELECT 
-            p.productName,
-            SUM(oi.quantity) AS totalSold
-        FROM OrderItem oi
-        JOIN Product p ON oi.productId = p.productId
-        GROUP BY oi.productId, p.productName
-        ORDER BY totalSold DESC
-        LIMIT 8
-    ");
+    SELECT 
+        p.productName,
+        SUM(oi.quantity) AS totalSold
+    FROM OrderItem oi
+    JOIN `Order` o ON oi.orderId = o.orderId
+    JOIN Payment py ON o.orderId = py.orderId  -- Ensures only completed orders
+    JOIN Product p ON oi.productId = p.productId
+    GROUP BY oi.productId, p.productName
+    ORDER BY totalSold DESC
+    LIMIT 8
+");
     $bestSellingProducts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
     error_log('Database error: ' . $e->getMessage());
