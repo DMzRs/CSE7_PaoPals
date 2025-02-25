@@ -54,6 +54,15 @@ try {
                            VALUES (?, ?, ?, ?)");
     $stmt->execute([$orderId, $customerId, $paymentMethod, $totalCost]);
 
+    // Get the last inserted payment ID
+    $paymentId = $pdo->lastInsertId();
+
+    // Insert into Sales table
+    $stmt = $pdo->prepare("INSERT INTO Sales (orderId, paymentId, customerId, totalRevenue) 
+                       VALUES (?, ?, ?, ?)");
+    $stmt->execute([$orderId, $paymentId, $customerId, $totalCost]);
+
+
     // Deduct stock
     foreach ($orderItems as $item) {
         $productId = $item['productId'];
@@ -96,9 +105,8 @@ try {
 
     echo json_encode([
         'success' => true,
-        'message' => 'Order completed successfully. A new pending order has been created.'
+        'message' => 'Order completed successfully.'
     ]);
-    
 } catch (PDOException $e) {
     $pdo->rollBack();
     error_log("Database Error: " . $e->getMessage());

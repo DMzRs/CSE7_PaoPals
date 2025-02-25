@@ -67,7 +67,7 @@
                     <!-- Card Section -->
                     <div id="cardSection" class="form-group" style="display:none;">
                         <label>Card Number:</label>
-                        <input type="text" name="cardNumber" placeholder="Enter card number">
+                        <input type="number" name="cardNumber" placeholder="Enter card number">
                     </div>
 
                     <!-- Cash Section -->
@@ -81,7 +81,7 @@
                     <!-- GCash Section -->
                     <div id="gcashSection" class="form-group" style="display:none;">
                         <label>GCash Number:</label>
-                        <input type="text" name="gcashNumber" placeholder="Enter GCash number">
+                        <input type="number" name="gcashNumber" placeholder="Enter GCash number">
                     </div>
 
                     <button class="buttonZ" type="submit">Submit Payment</button>
@@ -182,14 +182,25 @@
         }
 
         //Check out handling
-        // Checkout Handling
+
         document.getElementById('checkoutForm').addEventListener('submit', async (e) => {
             e.preventDefault();
 
             const paymentMethod = document.getElementById('paymentMethod').value;
             const totalCost = parseFloat(document.querySelector('.totalCost h2').textContent.replace('₱', ''));
 
-            // Check cash amount if the payment method is cash
+            // Validate GCash number
+            if (paymentMethod === "gcash") {
+                const gcashNumber = document.querySelector('input[name="gcashNumber"]').value.trim();
+                const gcashPattern = /^09\d{9}$/; // Starts with 09 + 9 digits
+
+                if (!gcashPattern.test(gcashNumber)) {
+                    alert("Invalid GCash number. It must start with '09' and be exactly 11 digits long.");
+                    return;
+                }
+            }
+
+            // Validate Cash Payment
             if (paymentMethod === "cash") {
                 const cashAmountInput = document.getElementById('cashAmount');
                 const cashAmount = parseFloat(cashAmountInput.value);
@@ -197,6 +208,17 @@
                 if (isNaN(cashAmount) || cashAmount < totalCost) {
                     alert("Insufficient cash. Please enter a valid amount.");
                     cashAmountInput.focus(); // Focus input field for user to correct
+                    return;
+                }
+            }
+
+            // Validate Card Number
+            if (paymentMethod === "card") {
+                const cardNumber = document.querySelector('input[name="cardNumber"]').value.trim();
+                const cardPattern = /^\d{16}$/; // Exactly 16 digits
+
+                if (!cardPattern.test(cardNumber)) {
+                    alert("Invalid card number. It must be exactly 16 digits long.");
                     return;
                 }
             }
@@ -213,11 +235,12 @@
             const data = await response.json();
             if (data.success) {
                 alert(data.message);
-                location.href = '../MainPages/menuPage.php';
+                location.href = '../MainPages/orderSuccessPage.php';
             } else {
                 alert(data.message);
             }
         });
+
 
 
 

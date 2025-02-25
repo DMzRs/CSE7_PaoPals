@@ -1,6 +1,10 @@
 <?php
+session_start();
+include '../includes/getSalesData.inc.php';
 
+$salesData = getSalesData();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,11 +43,19 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <?php if (!empty($salesData)): ?>
+                                <?php foreach ($salesData as $sale): ?>
+                                    <tr>
+                                        <td><?= htmlspecialchars(date('F j, Y', strtotime($sale['saleDate']))) ?></td>
+                                        <td><?= htmlspecialchars($sale['totalUnitsSold']) ?></td>
+                                        <td>₱<?= number_format($sale['totalSales'], 2) ?></td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            <?php else: ?>
                                 <tr>
-                                    <td>September 21, 2025</td>
-                                    <td>136</td>
-                                    <td>P2715912587</td>
+                                    <td colspan="3">No sales data available.</td>
                                 </tr>
+                            <?php endif; ?>
                         </tbody>
                     </table>
                 </div>
