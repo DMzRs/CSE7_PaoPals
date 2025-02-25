@@ -1,12 +1,15 @@
 <?php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 include_once '../includes/dbhc.inc.php';
-include_once '../includes/session.php'; // Include the session logic
+include_once '../includes/session.php'; 
 
 // Redirect unauthorized users
-if (!isAuthenticated()) {
-    header('Location: ../MainPages/login.php');
-    exit;
+if (!isset($_SESSION['customerLoggedIn'])) {
+    echo json_encode(['success' => false, 'message' => 'Unauthorized']);
+    exit();
 }
 
 // Get customer ID from session
@@ -93,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save'])) {
                         customerEmail = :email,
                         customerContactNumber = :contactNumber,
                         customerAddress = :address";
-
+    
             $params = [
                 'firstName' => $firstName,
                 'lastName' => $lastName,
@@ -102,27 +105,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save'])) {
                 'address' => $address,
                 'customerId' => $customerId
             ];
-
+    
             if (!empty($newPassword)) {
                 $hashedNewPassword = password_hash($newPassword, PASSWORD_BCRYPT);
                 $sql .= ", customerPassword = :password";
                 $params['password'] = $hashedNewPassword;
             }
-
+    
             $sql .= " WHERE customerId = :customerId";
-
+    
             $stmtUpdate = $pdo->prepare($sql);
             $stmtUpdate->execute($params);
-
-            // Refresh customer data
-            $stmtRefresh = $pdo->prepare("SELECT * FROM Customer WHERE customerId = :customerId");
-            $stmtRefresh->execute(['customerId' => $customerId]);
-            $customer = $stmtRefresh->fetch(PDO::FETCH_ASSOC);
-
-            $success = true;
+    
+            // **Redirect to Profile Page to refresh data**
+            header("Location: ../MainPages/profilePage.php?success=1");
+            exit();
+    
         } catch (PDOException $e) {
             $errors[] = 'Error updating profile: ' . $e->getMessage();
         }
-    }
+    }    
 }
 ?>

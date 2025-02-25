@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-// Debugging: Uncomment to check session values
-// echo "<pre>"; print_r($_SESSION); echo "</pre>"; exit;
+include_once '../includes/profilePage.inc.php';
+
 
 // Redirect unauthorized users
 if (!isset($_SESSION['customerLoggedIn']) || $_SESSION['customerLoggedIn'] !== true) {
@@ -42,6 +42,7 @@ $success = false;
     <link rel="stylesheet" href="../Styles/profilePage.css?v=<?php echo time(); ?>">
     <title>PaoPals</title>
 </head>
+
 <body>
     <?php include '../Templates/navBar.php'; ?>
     <section class="main-container">
@@ -55,11 +56,12 @@ $success = false;
                 <a class="orderHistory" href="profileOrderHistory.php">Order History</a>
             </div>
             <div class="prof-info-container">
-                <?php if ($success): ?>
+                <?php if (isset($_GET['success'])): ?>
                     <div class="success-alert">
                         <p>Your profile has been updated successfully!</p>
                     </div>
                 <?php endif; ?>
+
 
                 <?php if (!empty($errors)): ?>
                     <div class="error-alert">
@@ -69,7 +71,7 @@ $success = false;
                     </div>
                 <?php endif; ?>
                 <h3>Your information</h3>
-                <form method="POST">
+                <form method="POST" action="../includes/profilePage.inc.php">
                     <div>
                         <label for="firstName">First Name</label>
                         <input type="text" id="firstName" name="firstName" value="<?= htmlspecialchars($customer['customerFirstName'] ?? ''); ?>" required>
@@ -92,11 +94,11 @@ $success = false;
                     </div>
                     <div>
                         <label for="currentPassword">Current Password</label>
-                        <input type="password" id="currentPassword" name="currentPassword" >
+                        <input type="password" id="currentPassword" name="currentPassword">
                     </div>
                     <div>
                         <label for="newPassword">New Password</label>
-                        <input type="password" id="newPassword" name="newPassword" >
+                        <input type="password" id="newPassword" name="newPassword">
                     </div>
                     <div class="saveBtn">
                         <button name="save">Save</button>
