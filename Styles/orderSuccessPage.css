@@ -86,6 +86,9 @@
     width: 200px;
 }
 
+.table tbody{
+    border-top: 1px solid black;
+}
 .table-containerS th {
     border-top: 1px solid black;
     border-bottom: 1px solid black;

@@ -31,14 +31,14 @@
                     <thead>
                         <tr>
                             <th></th>
-                            <th>Total Units Sold</th>
-                            <th>Total Sales</th>
+                            <th>Name</th>
+                            <th>SubTotal</th>
                         </tr>
                     </thead>
                     <tbody>
                             <tr class="mainRow">
                                 <td><img src="../Images/products/sample_1.png" alt="picture"></td>
-                                <td>136</td>
+                                <td>Siopao PaoPals Specials x 2pcs</td>
                                 <td>P2715912587</td>
                             </tr>
                             <tr>
