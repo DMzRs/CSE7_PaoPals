@@ -1,6 +1,5 @@
 <?php
-session_start();
-
+include '../Templates/navBar.php';
 include_once '../includes/profilePage.inc.php';
 
 
@@ -44,7 +43,6 @@ $success = false;
 </head>
 
 <body>
-    <?php include '../Templates/navBar.php'; ?>
     <section class="main-container">
         <div class="header-container">
             <h1>YOUR ACCOUNT</h1>
