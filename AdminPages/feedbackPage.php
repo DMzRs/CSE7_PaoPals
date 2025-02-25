@@ -50,7 +50,8 @@ $feedbacks = getFeedbacks($pdo);
                 <a class="dashboard" href="mainDashboard.php">Dashboard</a>
                 <a class="products" href="productPage.php">Products</a>
                 <a class="inventory" href="inventoryPage.php">Inventory</a>
-                <a class="feedback current-tab" href="feedbackPage.php">Feedbacks</a>
+                <a class="sales" href="salesPage.php">Sales</a>
+                <a class="feedbacks" href="feedbackPage.php">Feedbacks</a>
             </div>
             <div class="feedback-container">
                 <h1 class="feedbackHeader">Feedbacks</h1>

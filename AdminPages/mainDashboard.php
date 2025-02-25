@@ -32,9 +32,10 @@ include_once '../includes/mainDashboard.inc.php';
         </div>
         <div class="first-container">
             <div class="tab-container">
-                <a class="dashboard active" href="mainDashboard.php">Dashboard</a>
+                <a class="dashboard" href="mainDashboard.php">Dashboard</a>
                 <a class="products" href="productPage.php">Products</a>
                 <a class="inventory" href="inventoryPage.php">Inventory</a>
+                <a class="sales" href="salesPage.php">Sales</a>
                 <a class="feedbacks" href="feedbackPage.php">Feedbacks</a>
             </div>
             <div class="dashBoard-container">

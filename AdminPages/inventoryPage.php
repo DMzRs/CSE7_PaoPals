@@ -34,6 +34,7 @@ if (!isset($_SESSION['userRole']) || $_SESSION['userRole'] !== 'admin') {
                 <a class="dashboard" href="mainDashboard.php">Dashboard</a>
                 <a class="products" href="productPage.php">Products</a>
                 <a class="inventory" href="inventoryPage.php">Inventory</a>
+                <a class="sales" href="salesPage.php">Sales</a>
                 <a class="feedbacks" href="feedbackPage.php">Feedbacks</a>
             </div>
             <div class="inventory-container">

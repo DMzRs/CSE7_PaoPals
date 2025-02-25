@@ -20,11 +20,9 @@
                     <li><a href="index.php">Home</a></li>
                     <li><a href="menuPage.php">Menu</a></li>
                     <li><a href="contactUsPage.php">Contact Us</a></li>
-                    <li><a href="#">About Us</a></li>
                 </ul>
             </div>
             <div class="action">
-                
                 <a href="profilePage.php"><img class="actions imgBtns" src="../Images/Icon/username_icon.png" alt="profile"></a>
                 <a href="cartPage.php"><img class="actions imgBtns" src="../Images/Icon/cart_icon.png" alt="cart"></a>
                 <?php if (isset($_SESSION['userRole'])) { ?>
@@ -36,9 +34,6 @@
         </div>
         <div class="block">
             <p></p>
-        </div>
-        <div class="breadcrumb">
-            <img src="../Images/Icon/home_icon.png" alt="home">
         </div>
     </section>
 </body>
