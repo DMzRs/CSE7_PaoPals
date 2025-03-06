@@ -1,6 +1,5 @@
 <?php
 session_start();
-// Include database connection
 include_once '../includes/dbhc.inc.php';
 
 // Check if user is logged in as admin
@@ -79,5 +78,4 @@ $feedbacks = getFeedbacks($pdo);
         </div>
     </section>
 </body>
-
 </html>

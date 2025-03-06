@@ -1,5 +1,5 @@
 <?php
-session_start(); // Ensure the session starts
+session_start(); 
 
 // Check if a user is logged in
 function isAuthenticated() {
