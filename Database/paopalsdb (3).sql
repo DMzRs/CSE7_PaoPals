@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 11, 2025 at 10:47 AM
+-- Generation Time: Mar 11, 2025 at 10:54 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -129,8 +129,9 @@ INSERT INTO `order` (`orderId`, `customerId`, `orderDate`, `status`) VALUES
 (36, 7, '2025-03-11 17:23:37', 'Completed'),
 (37, 7, '2025-03-11 17:27:26', 'Completed'),
 (38, 8, '2025-03-11 17:30:39', 'Completed'),
-(39, 7, '2025-03-11 17:31:01', 'Pending'),
-(40, 8, '2025-03-11 17:31:02', 'Pending');
+(39, 7, '2025-03-11 17:31:01', 'Completed'),
+(40, 8, '2025-03-11 17:31:02', 'Pending'),
+(41, 7, '2025-03-11 17:54:05', 'Pending');
 
 -- --------------------------------------------------------
 
@@ -156,7 +157,8 @@ INSERT INTO `orderitem` (`orderItemId`, `orderId`, `productId`, `quantity`, `uni
 (4, 35, 35, 1, 80.00),
 (5, 36, 32, 1, 50.00),
 (6, 37, 32, 1, 50.00),
-(7, 38, 32, 1, 50.00);
+(7, 38, 32, 1, 50.00),
+(8, 39, 37, 1, 20.00);
 
 -- --------------------------------------------------------
 
@@ -182,7 +184,8 @@ INSERT INTO `payment` (`paymentId`, `orderId`, `customerId`, `paymentDate`, `pay
 (38, 35, 7, '2025-03-11 17:23:37', 'GCash', 80.00),
 (39, 36, 7, '2025-03-11 17:27:26', 'Card', 50.00),
 (40, 37, 7, '2025-03-11 17:31:01', 'Cash', 50.00),
-(41, 38, 8, '2025-03-11 17:31:02', 'Cash', 50.00);
+(41, 38, 8, '2025-03-11 17:31:02', 'Cash', 50.00),
+(42, 39, 7, '2025-03-11 17:54:05', 'Cash', 20.00);
 
 -- --------------------------------------------------------
 
@@ -206,7 +209,9 @@ INSERT INTO `product` (`productId`, `productName`, `productCategory`, `productIm
 (32, 'Siopao Asado', 'Siopao', '1741684549_sample_1.png', 50.00),
 (33, 'Original Siopao', 'Siopao', '1741684583_sample_3.png', 25.00),
 (34, 'Iced Tea', 'Drinks', '1741684623_drink1.png', 15.00),
-(35, 'Leche Flan', 'Dessert', '1741684650_dessert1.png', 80.00);
+(35, 'Leche Flan', 'Dessert', '1741684650_dessert1.png', 80.00),
+(36, 'Pork Siopao', 'Siopao', '1741686674_sample_2.png', 60.00),
+(37, 'Coke', 'Drinks', '1741686818_istockphoto-458464735-612x612.jpg', 20.00);
 
 -- --------------------------------------------------------
 
@@ -232,7 +237,8 @@ INSERT INTO `sales` (`saleId`, `orderId`, `paymentId`, `customerId`, `saleDate`,
 (2, 35, 38, 7, '2025-03-11 17:23:37', 80.00),
 (3, 36, 39, 7, '2025-03-11 17:27:26', 50.00),
 (4, 37, 40, 7, '2025-03-11 17:31:01', 50.00),
-(5, 38, 41, 8, '2025-03-11 17:31:02', 50.00);
+(5, 38, 41, 8, '2025-03-11 17:31:02', 50.00),
+(6, 39, 42, 7, '2025-03-11 17:54:05', 20.00);
 
 -- --------------------------------------------------------
 
@@ -255,10 +261,12 @@ CREATE TABLE `stockin` (
 --
 
 INSERT INTO `stockin` (`stockInId`, `productId`, `quantity`, `dateCreated`, `expirationDate`, `remainingQuantity`, `status`) VALUES
-(36, 32, 100, '2025-03-11', '2025-03-13', 89, 'Available'),
-(37, 33, 100, '2025-03-11', '2025-03-13', 100, 'Available'),
-(38, 34, 100, '2025-03-11', '2025-03-13', 92, 'Available'),
-(39, 35, 111, '2025-03-11', '2025-03-13', 110, 'Available');
+(36, 32, 100, '2025-03-11', '2025-03-15', 89, 'Available'),
+(37, 33, 100, '2025-03-11', '2025-03-12', 100, 'Available'),
+(38, 34, 100, '2025-03-11', '2025-03-15', 92, 'Available'),
+(39, 35, 111, '2025-03-11', '2025-03-15', 110, 'Available'),
+(40, 36, 100, '2025-03-11', '2025-03-15', 100, 'Available'),
+(41, 37, 1, '2025-03-11', '2025-03-15', 0, 'Unavailable');
 
 -- --------------------------------------------------------
 
@@ -284,7 +292,8 @@ INSERT INTO `stockout` (`stockOutId`, `stockInId`, `quantity`, `dateUsed`, `caus
 (164, 39, 1, '2025-03-11', 'Sale'),
 (165, 36, 1, '2025-03-11', 'Sale'),
 (166, 36, 1, '2025-03-11', 'Sale'),
-(167, 36, 1, '2025-03-11', 'Sale');
+(167, 36, 1, '2025-03-11', 'Sale'),
+(168, 41, 1, '2025-03-11', 'Sale');
 
 --
 -- Indexes for dumped tables
@@ -388,43 +397,43 @@ ALTER TABLE `feedback`
 -- AUTO_INCREMENT for table `order`
 --
 ALTER TABLE `order`
-  MODIFY `orderId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `orderId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `orderitem`
 --
 ALTER TABLE `orderitem`
-  MODIFY `orderItemId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `orderItemId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `payment`
 --
 ALTER TABLE `payment`
-  MODIFY `paymentId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `paymentId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `productId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `productId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `sales`
 --
 ALTER TABLE `sales`
-  MODIFY `saleId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `saleId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `stockin`
 --
 ALTER TABLE `stockin`
-  MODIFY `stockInId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `stockInId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `stockout`
 --
 ALTER TABLE `stockout`
-  MODIFY `stockOutId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=168;
+  MODIFY `stockOutId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=169;
 
 --
 -- Constraints for dumped tables
