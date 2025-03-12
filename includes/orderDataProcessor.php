@@ -1,4 +1,6 @@
 <?php
+//For Success Page
+
 session_start();
 include 'dbhc.inc.php';
 
