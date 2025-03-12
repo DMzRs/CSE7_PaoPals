@@ -54,7 +54,7 @@ include '../Templates/navBar.php';
                     const orderTableBody = document.getElementById("order-history-body");
                     const noOrdersMessage = document.getElementById("no-orders-message");
 
-                    orderTableBody.innerHTML = ""; // Clear existing rows
+                    orderTableBody.innerHTML = ""; 
 
                     if (data.success) {
                         if (data.orders.length === 0) {

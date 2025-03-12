@@ -21,7 +21,7 @@ $orderItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // Ensure unitPrice is returned as a float
 foreach ($orderItems as &$item) {
-    $item['unitPrice'] = (float) $item['unitPrice']; // Explicitly cast to float
+    $item['unitPrice'] = (float) $item['unitPrice']; 
 }
 
 echo json_encode($orderItems);

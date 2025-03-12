@@ -29,8 +29,8 @@ try {
 
     $unitPrice = $product['productPrice'];
 
-    // Check if there's an existing pending order (Assuming `orderStatus` exists)
-    // 🔹 Check if there's an existing pending order
+    
+    // Check if there's an existing pending order
     $orderQuery = $pdo->prepare("SELECT orderId FROM `Order` WHERE customerId = ? AND status = 'Pending' LIMIT 1");
     $orderQuery->execute([$customerId]);
     $order = $orderQuery->fetch(PDO::FETCH_ASSOC);
@@ -38,7 +38,7 @@ try {
     if ($order) {
         $orderId = $order['orderId'];
     } else {
-        // 🔹 Create a new pending order if none exists
+        // Create a new pending order if none exists
         $createOrder = $pdo->prepare("INSERT INTO `Order` (customerId, status, orderDate) VALUES (?, 'Pending', NOW())");
         $createOrder->execute([$customerId]);
         $orderId = $pdo->lastInsertId();
@@ -63,6 +63,6 @@ try {
 
     echo json_encode(["success" => true, "message" => "Added to order!"]);
 } catch (PDOException $e) {
-    error_log("Database Error: " . $e->getMessage()); // Log error
+    error_log("Database Error: " . $e->getMessage()); 
     echo json_encode(["success" => false, "message" => "An error occurred. Please try again."]);
 }

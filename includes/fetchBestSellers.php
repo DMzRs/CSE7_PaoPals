@@ -1,7 +1,7 @@
 <?php
 include '../includes/dbhc.inc.php';
 
-// Query to get top 3 best-selling products with remaining stock
+// Query to get top 3 best-selling products 
 $queryBestSellers = "
     SELECT p.productId, p.productName, p.productImage, p.productPrice, 
            COALESCE(SUM(si.remainingQuantity), 0) AS remainingStock,

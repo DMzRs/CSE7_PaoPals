@@ -31,7 +31,9 @@
                 <h2>Total Price</h2>
             </div>
         </div>
-        <div class="order-containers"></div>
+        <div class="order-containers">
+
+        </div>
         <div class="total-cost-container">
             <div class="totalCostTitle">
                 <h2>Total Cost:</h2>
@@ -104,7 +106,6 @@
     </div>
     
 `;
-
 
             data.forEach(item => {
                 const orderItem = document.createElement('div');
