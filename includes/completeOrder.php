@@ -12,6 +12,7 @@ $paymentMethod = $_POST['paymentMethod'] ?? '';
 $totalCostPosted = (float)$_POST['totalCost'] ?? 0;
 
 try {
+
     $pdo->beginTransaction();
 
     $stmt = $pdo->prepare("SELECT orderId FROM `Order` WHERE customerId = ? AND status = 'Pending'");
@@ -72,7 +73,7 @@ try {
             $stmt = $pdo->prepare("SELECT stockInId, remainingQuantity 
                                    FROM StockIn 
                                    WHERE productId = ? AND status = 'Available' 
-                                   ORDER BY dateCreated ASC LIMIT 1");
+                                   ORDER BY dateCreated ASC LIMIT 1"); // FIFO Isa ka Inventory ang kuhaon thus mao to ang kuwaan og stock bali ang pinakauna 
             $stmt->execute([$productId]);
             $stock = $stmt->fetch(PDO::FETCH_ASSOC);
 
